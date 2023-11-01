@@ -11,13 +11,13 @@ public class ApplicationExceptionTest {
 	private Exception _ex;
 
 	public final String CATEGORY = "category";
-	public final String CORRELATION_ID = "correlationId";
+	public final String TRACE_ID = "traceId";
 	public final String CODE = "code";
 	public final String MESSAGE = "message";
 	@Before
 	public void setException() {
 		_ex = new Exception("Cause exception");
-		_appEx = new ApplicationException(CATEGORY, CORRELATION_ID, CODE, MESSAGE);
+		_appEx = new ApplicationException(CATEGORY, TRACE_ID, CODE, MESSAGE);
 	}
 
 	@Test
@@ -30,7 +30,7 @@ public class ApplicationExceptionTest {
 	@Test
 	public void testCheckParameters() {
 		assertEquals(CATEGORY, _appEx.getCategory());
-		assertEquals(CORRELATION_ID, _appEx.getCorrelationId());
+		assertEquals(TRACE_ID, _appEx.gettraceId());
 		assertEquals(CODE, _appEx.getCode());
 		assertEquals(MESSAGE, _appEx.getMessage());
 	}
@@ -45,7 +45,7 @@ public class ApplicationExceptionTest {
 	}
 
 	@Test
-	public void testWithCorrelationId() {
+	public void testWithtraceId() {
 		String newCode = "newCode";
 		ApplicationException appEx = _appEx.withCode(newCode);
 

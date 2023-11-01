@@ -41,7 +41,7 @@ public class ErrorDescription {
     /**
      * A unique transaction id to trace execution throug call chain
      */
-    private String _correlationId;
+    private String _traceId;
     /**
      * Original error wrapped by this exception
      */
@@ -108,13 +108,13 @@ public class ErrorDescription {
         _details = value;
     }
 
-    @JsonProperty("correlation_id")
-    public String getCorrelationId() {
-        return _correlationId;
+    @JsonProperty("trace_id")
+    public String gettraceId() {
+        return _traceId;
     }
 
-    public void setCorrelationId(String value) {
-        _correlationId = value;
+    public void settraceId(String value) {
+        _traceId = value;
     }
 
     @JsonProperty("cause")

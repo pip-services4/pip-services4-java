@@ -19,13 +19,13 @@ public class NotFoundException extends ApplicationException {
     /**
      * Creates an error instance and assigns its values.
      *
-     * @param correlationId (optional) a unique transaction id to trace execution through call chain.
+     * @param traceId (optional) a unique transaction id to trace execution through call chain.
      * @param code          (optional) a unique error code. Default: "UNKNOWN"
      * @param message       (optional) a human-readable description of the error.
      * @see ErrorCategory
      */
-    public NotFoundException(String correlationId, String code, String message) {
-        super(ErrorCategory.NotFound, correlationId, code, message);
+    public NotFoundException(String traceId, String code, String message) {
+        super(ErrorCategory.NotFound, traceId, code, message);
         this.setStatus(404);
     }
 }

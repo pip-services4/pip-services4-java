@@ -21,7 +21,7 @@ public class ApplicationExceptionFactoryTest {
     @Before
     public void setupDescription() {
         _descr = new ErrorDescription();
-        _descr.setCorrelationId("correlationId");
+        _descr.settraceId("traceId");
         _descr.setCode("code");
         _descr.setMessage("message");
         _descr.setStatus(777);

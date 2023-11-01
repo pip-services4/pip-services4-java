@@ -14,7 +14,7 @@ public class ErrorDescriptionFactoryTest {
         String key = "key";
         String details = "details";
 
-        ApplicationException ex = new ApplicationException("category", "correlationId", "code", "message");
+        ApplicationException ex = new ApplicationException("category", "traceId", "code", "message");
 
         ex.setStatus(777);
         ex.setCauseString("cause");
@@ -25,7 +25,7 @@ public class ErrorDescriptionFactoryTest {
 
         assertNotNull(descr);
         assertEquals(ex.getCategory(), descr.getCategory());
-        assertEquals(ex.getCorrelationId(), descr.getCorrelationId());
+        assertEquals(ex.gettraceId(), descr.gettraceId());
         assertEquals(ex.getCode(), descr.getCode());
         assertEquals(ex.getMessage(), descr.getMessage());
         assertEquals(ex.getStatus(), descr.getStatus());

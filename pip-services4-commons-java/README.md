@@ -27,7 +27,7 @@ The module contains the following packages:
 Go to the pom.xml file in Maven project and add dependencies::
 ```xml
 <dependency>
-  <groupId>org.pipservices4</groupId>
+  <groupId>org.pipservices</groupId>
   <artifactId>pip-services4-commons</artifactId>
   <version>0.0.1</version>
 </dependency>

@@ -31,7 +31,7 @@ public class ErrorDescriptionFactory {
             description.setCode(((ApplicationException) ex).getCode());
             description.setMessage(ex.getMessage());
             description.setDetails(((ApplicationException) ex).getDetails());
-            description.setCorrelationId(((ApplicationException) ex).getCorrelationId());
+            description.settraceId(((ApplicationException) ex).gettraceId());
             description.setCause(((ApplicationException) ex).getCauseString());
             description.setStackTrace(((ApplicationException) ex).getStackTraceString());
         } else {
@@ -55,10 +55,10 @@ public class ErrorDescriptionFactory {
      * Creates a serializable ErrorDescription from throwable object with unknown error category.
      *
      * @param ex            an error object
-     * @param correlationId (optional) a unique transaction id to trace execution through call chain.
+     * @param traceId (optional) a unique transaction id to trace execution through call chain.
      * @return a serializeable ErrorDescription object that describes the error.
      */
-    public static ErrorDescription create(Throwable ex, String correlationId) {
+    public static ErrorDescription create(Throwable ex, String traceId) {
         ErrorDescription description = new ErrorDescription();
         description.setType(ex.getClass().getCanonicalName());
         description.setCategory(ErrorCategory.Unknown);
@@ -79,7 +79,7 @@ public class ErrorDescriptionFactory {
             }
         }
         description.setStackTrace(builder.toString());
-        description.setCorrelationId(correlationId);
+        description.settraceId(traceId);
 
         return description;
     }

@@ -21,7 +21,7 @@ package org.pipservices4.commons.data;
  *    ...
  *  }
  *
- * public void updateData(String correlationId, MyData item) {
+ * public void updateData(String traceId, MyData item) {
  *  ...
  *  if (item.getVersion() < oldItem.getVersion()) {
  *    throw new ConcurrencyException(null, "VERSION_CONFLICT", "The change has older version stored value");

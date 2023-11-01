@@ -30,7 +30,7 @@ import com.fasterxml.jackson.annotation.*;
  * <li>category: one of 12 standard error categories of errors
  * <li>status: numeric HTTP status code for REST invocations
  * <li>code: a unique error code, usually defined as "MY_ERROR_CODE"
- * <li>correlation_id: a unique transaction id to trace execution through a call chain
+ * <li>trace_id: a unique transaction id to trace execution through a call chain
  * <li>details: map with error parameters that can help to recreate meaningful error description in other languages
  * <li>stack_trace: a stack trace
  * <li>cause: original error that is wrapped by this exception
@@ -70,7 +70,7 @@ public class ApplicationException extends Exception {
     /**
      * A unique transaction id to trace execution throug call chain
      */
-    private String _correlationId;
+    private String _traceId;
     /**
      * Stack trace of the exception
      */
@@ -92,15 +92,15 @@ public class ApplicationException extends Exception {
      * Creates a new instance of application exception and assigns its values.
      *
      * @param category      (optional) a standard error category. Default: Unknown
-     * @param correlationId (optional) a unique transaction id to trace execution
+     * @param traceId (optional) a unique transaction id to trace execution
      *                      through call chain.
      * @param code          (optional) a unique error code. Default: "UNKNOWN"
      * @param message       (optional) a human-readable description of the error.
      */
-    public ApplicationException(String category, String correlationId, String code, String message) {
+    public ApplicationException(String category, String traceId, String code, String message) {
         super(message != null ? message : "Unknown error");
         _message = message != null ? message : "Unknown error";
-        _correlationId = correlationId;
+        _traceId = traceId;
         _code = code != null ? code : "UNKNOWN";
         _category = category != null ? category : ErrorCategory.Unknown;
     }
@@ -151,13 +151,13 @@ public class ApplicationException extends Exception {
         _details = value;
     }
 
-    @JsonProperty("correlation_id")
-    public String getCorrelationId() {
-        return _correlationId;
+    @JsonProperty("trace_id")
+    public String gettraceId() {
+        return _traceId;
     }
 
-    public void setCorrelationId(String value) {
-        _correlationId = value;
+    public void settraceId(String value) {
+        _traceId = value;
     }
 
     /**
@@ -278,12 +278,12 @@ public class ApplicationException extends Exception {
      * This method returns reference to this exception to implement Builder pattern
      * to chain additional calls.
      *
-     * @param correlationId a unique transaction id to trace error through call
+     * @param traceId a unique transaction id to trace error through call
      *                      chain
      * @return this exception object
      */
-    public ApplicationException withCorrelationId(String correlationId) {
-        _correlationId = correlationId;
+    public ApplicationException withtraceId(String traceId) {
+        _traceId = traceId;
         return this;
     }
 
