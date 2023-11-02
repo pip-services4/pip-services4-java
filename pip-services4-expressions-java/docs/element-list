@@ -1,0 +1,14 @@
+org.pipservices4.expressions.calculator
+org.pipservices4.expressions.calculator.functions
+org.pipservices4.expressions.calculator.parsers
+org.pipservices4.expressions.calculator.tokenizers
+org.pipservices4.expressions.calculator.variables
+org.pipservices4.expressions.csv
+org.pipservices4.expressions.io
+org.pipservices4.expressions.mustache
+org.pipservices4.expressions.mustache.parsers
+org.pipservices4.expressions.mustache.tokenizers
+org.pipservices4.expressions.tokenizers
+org.pipservices4.expressions.tokenizers.generic
+org.pipservices4.expressions.tokenizers.utilities
+org.pipservices4.expressions.variants
