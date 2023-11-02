@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <projectDescription>
-	<name>pip-services4-components-java</name>
+	<name>pip-services4-expressions-java</name>
 	<comment></comment>
 	<projects>
 	</projects>
@@ -22,7 +22,7 @@
 	</natures>
 	<filteredResources>
 		<filter>
-			<id>1698939382882</id>
+			<id>1698939382915</id>
 			<name></name>
 			<type>30</type>
 			<matcher>
