@@ -3,6 +3,7 @@ package org.pipservices4.commons.convert;
 import static org.junit.Assert.*;
 
 import java.time.*;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -17,9 +18,14 @@ public class JsonConverterTest {
 		assertEquals("123", JsonConverter.toJson(123));
 		assertEquals("\"ABC\"", JsonConverter.toJson("ABC"));
 				
-		FilterParams filter = FilterParams.fromTuples("Key1", 123, "Key2", "ABC");
+		Map<String, Object> filter = new HashMap<>(){
+            {
+                put("Key1", 123);
+                put("Key2", "ABC");
+            }
+        };
 		String jsonFilter = JsonConverter.toJson(filter);
-		assertEquals("{\"Key2\":\"ABC\",\"Key1\":\"123\"}", jsonFilter);
+		assertEquals("{\"Key2\":\"ABC\",\"Key1\":123}", jsonFilter);
 		
 		AnyValueArray array = AnyValueArray.fromValues(123, "ABC");
 		String jsonArray = JsonConverter.toJson(array);
@@ -36,7 +42,7 @@ public class JsonConverterTest {
 		assertEquals(123, (int)JsonConverter.fromJson(Integer.class, "123"));
 		assertEquals("ABC", JsonConverter.fromJson(String.class, "\"ABC\""));
 				
-		FilterParams filter = JsonConverter.fromJson(FilterParams.class, "{\"Key2\":\"ABC\",\"Key1\":\"123\"}");
+		Map filter = JsonConverter.fromJson(Map.class, "{\"Key2\":\"ABC\",\"Key1\":\"123\"}");
 		assertEquals(2, filter.size());
 		
 		AnyValueArray array = JsonConverter.fromJson(AnyValueArray.class, "[123,\"ABC\"]");
