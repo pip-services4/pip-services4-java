@@ -1,0 +1,1 @@
+packageSearchIndex = [{"l":"All Packages","u":"allpackages-index.html"},{"l":"org.pipservices4.config.auth"},{"l":"org.pipservices4.config.build"},{"l":"org.pipservices4.config.config"},{"l":"org.pipservices4.config.connect"}];updateSearchResults();
