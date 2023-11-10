@@ -31,7 +31,7 @@ public class ErrorDescriptionFactory {
             description.setCode(((ApplicationException) ex).getCode());
             description.setMessage(ex.getMessage());
             description.setDetails(((ApplicationException) ex).getDetails());
-            description.settraceId(((ApplicationException) ex).gettraceId());
+            description.setTraceId(((ApplicationException) ex).getTraceId());
             description.setCause(((ApplicationException) ex).getCauseString());
             description.setStackTrace(((ApplicationException) ex).getStackTraceString());
         } else {
@@ -73,13 +73,13 @@ public class ErrorDescriptionFactory {
         StringBuilder builder = new StringBuilder();
         if (ste != null) {
             for (StackTraceElement stackTraceElement : ste) {
-                if (builder.length() > 0)
+                if (!builder.isEmpty())
                     builder.append(" ");
                 builder.append(stackTraceElement.toString());
             }
         }
         description.setStackTrace(builder.toString());
-        description.settraceId(traceId);
+        description.setTraceId(traceId);
 
         return description;
     }

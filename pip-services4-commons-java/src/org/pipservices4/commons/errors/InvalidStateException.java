@@ -1,10 +1,13 @@
 package org.pipservices4.commons.errors;
 
+import java.io.Serial;
+
 /**
  * Errors related to operations called in wrong component state.
  * For instance, business calls when component is not ready
  */
 public class InvalidStateException extends ApplicationException {
+    @Serial
     private static final long serialVersionUID = 8713306897733892945L;
 
     /**

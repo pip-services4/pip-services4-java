@@ -4,6 +4,8 @@ import org.pipservices4.commons.data.*;
 
 import com.fasterxml.jackson.annotation.*;
 
+import java.io.Serial;
+
 /**
  * Defines a base class to defive various application exceptions.
  * <p>
@@ -44,6 +46,7 @@ import com.fasterxml.jackson.annotation.*;
  * @see ErrorDescription
  */
 public class ApplicationException extends Exception {
+    @Serial
     private static final long serialVersionUID = -5846403471784245155L;
 
     /**
@@ -152,11 +155,11 @@ public class ApplicationException extends Exception {
     }
 
     @JsonProperty("trace_id")
-    public String gettraceId() {
+    public String getTraceId() {
         return _traceId;
     }
 
-    public void settraceId(String value) {
+    public void setTraceId(String value) {
         _traceId = value;
     }
 

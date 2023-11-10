@@ -1,9 +1,12 @@
 package org.pipservices4.commons.errors;
 
+import java.io.Serial;
+
 /**
  * Errors related to mistakes in the microservice's user-defined configurations.
  */
 public class ConfigException extends ApplicationException {
+    @Serial
     private static final long serialVersionUID = 3832437788895163030L;
 
     /**

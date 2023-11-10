@@ -1,9 +1,12 @@
 package org.pipservices4.commons.errors;
 
+import java.io.Serial;
+
 /**
  * Errors returned by remote services or network during call attempts
  */
 public class InvocationException extends ApplicationException {
+    @Serial
     private static final long serialVersionUID = 7516215539095097503L;
 
     /**

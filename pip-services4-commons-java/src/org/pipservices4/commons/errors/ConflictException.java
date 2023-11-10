@@ -1,10 +1,13 @@
 package org.pipservices4.commons.errors;
 
+import java.io.Serial;
+
 /**
  * Errors raised by conflicts between object versions that were
  * posted by the user and those that are stored on the server.
  */
 public class ConflictException extends ApplicationException {
+    @Serial
     private static final long serialVersionUID = -3421059253211761993L;
 
     /**
@@ -28,6 +31,6 @@ public class ConflictException extends ApplicationException {
     public ConflictException(String traceId, String code, String message) {
         super(ErrorCategory.Conflict, traceId, code, message);
         this.setStatus(409);
-        this.settraceId(traceId);
+        this.setTraceId(traceId);
     }
 }

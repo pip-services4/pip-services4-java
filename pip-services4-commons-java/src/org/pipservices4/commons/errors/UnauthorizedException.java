@@ -1,9 +1,12 @@
 package org.pipservices4.commons.errors;
 
+import java.io.Serial;
+
 /**
  * Access errors caused by missing user identity (authentication error) or incorrect security permissions (authorization error).
  */
 public class UnauthorizedException extends ApplicationException {
+    @Serial
     private static final long serialVersionUID = 1728971490844757508L;
 
     /**

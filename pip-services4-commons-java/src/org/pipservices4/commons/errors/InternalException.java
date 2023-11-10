@@ -1,9 +1,12 @@
 package org.pipservices4.commons.errors;
 
+import java.io.Serial;
+
 /**
  * Errors caused by programming mistakes
  */
 public class InternalException extends ApplicationException {
+    @Serial
     private static final long serialVersionUID = 9121408616688009166L;
 
     /**

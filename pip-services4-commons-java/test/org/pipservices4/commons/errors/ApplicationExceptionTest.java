@@ -30,7 +30,7 @@ public class ApplicationExceptionTest {
 	@Test
 	public void testCheckParameters() {
 		assertEquals(CATEGORY, _appEx.getCategory());
-		assertEquals(TRACE_ID, _appEx.gettraceId());
+		assertEquals(TRACE_ID, _appEx.getTraceId());
 		assertEquals(CODE, _appEx.getCode());
 		assertEquals(MESSAGE, _appEx.getMessage());
 	}

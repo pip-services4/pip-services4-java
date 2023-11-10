@@ -1,9 +1,12 @@
 package org.pipservices4.commons.errors;
 
+import java.io.Serial;
+
 /**
  * Errors caused by calls to unsupported or not yet implemented functionality
  */
 public class UnsupportedException extends ApplicationException {
+    @Serial
     private static final long serialVersionUID = -8650683748145033352L;
 
     /**

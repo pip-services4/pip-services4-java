@@ -9,3 +9,6 @@ Replace correlationId by traceId
 ## <a name="0.0.3"></a>Pip.Services 4 0.0.3 (2023-11-2)
 Moving classes to other packages
 
+## <a name="0.0.4"></a>Pip.Services 4 0.0.4 (2023-11-10)
+Fixing typos and naming gaps
+

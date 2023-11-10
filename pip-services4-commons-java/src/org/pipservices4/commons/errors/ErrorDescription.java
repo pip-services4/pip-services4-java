@@ -109,11 +109,11 @@ public class ErrorDescription {
     }
 
     @JsonProperty("trace_id")
-    public String gettraceId() {
+    public String getTraceId() {
         return _traceId;
     }
 
-    public void settraceId(String value) {
+    public void setTraceId(String value) {
         _traceId = value;
     }
 

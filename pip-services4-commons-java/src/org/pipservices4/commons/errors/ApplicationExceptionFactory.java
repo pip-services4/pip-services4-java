@@ -24,7 +24,7 @@ public class ApplicationExceptionFactory {
     	String category = description.getCategory();
     	String code = description.getCode();
     	String message = description.getMessage();
-    	String traceId = description.gettraceId();
+    	String traceId = description.getTraceId();
     	
     	// Create well-known exception type based on error category
     	if (ErrorCategory.Unknown.equals(category))

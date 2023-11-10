@@ -1,9 +1,12 @@
 package org.pipservices4.commons.errors;
 
+import java.io.Serial;
+
 /**
  * Error caused by attempt to access missing object
  */
 public class NotFoundException extends ApplicationException {
+    @Serial
     private static final long serialVersionUID = -3296918665715724164L;
 
     /**

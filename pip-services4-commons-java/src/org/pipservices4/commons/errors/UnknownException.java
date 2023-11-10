@@ -1,9 +1,12 @@
 package org.pipservices4.commons.errors;
 
+import java.io.Serial;
+
 /**
  * Unknown or unexpected errors
  */
 public class UnknownException extends ApplicationException {
+    @Serial
     private static final long serialVersionUID = -8513540232023043856L;
 
     /**

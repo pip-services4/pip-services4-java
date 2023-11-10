@@ -1,10 +1,13 @@
 package org.pipservices4.commons.errors;
 
+import java.io.Serial;
+
 /**
  * Errors that occur during connections to remote services.
  * They can be related to misconfiguration, network issues, or the remote service itself.
  */
 public class ConnectionException extends ApplicationException {
+    @Serial
     private static final long serialVersionUID = 5757636441830366775L;
 
     /**

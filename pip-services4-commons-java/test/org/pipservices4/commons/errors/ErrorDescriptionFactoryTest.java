@@ -25,7 +25,7 @@ public class ErrorDescriptionFactoryTest {
 
         assertNotNull(descr);
         assertEquals(ex.getCategory(), descr.getCategory());
-        assertEquals(ex.gettraceId(), descr.gettraceId());
+        assertEquals(ex.getTraceId(), descr.getTraceId());
         assertEquals(ex.getCode(), descr.getCode());
         assertEquals(ex.getMessage(), descr.getMessage());
         assertEquals(ex.getStatus(), descr.getStatus());

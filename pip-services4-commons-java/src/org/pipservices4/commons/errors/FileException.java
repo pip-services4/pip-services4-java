@@ -1,9 +1,12 @@
 package org.pipservices4.commons.errors;
 
+import java.io.Serial;
+
 /**
  * Errors in read/write file operations
  */
 public class FileException extends ApplicationException {
+    @Serial
     private static final long serialVersionUID = 1330544660294516445L;
 
     /**

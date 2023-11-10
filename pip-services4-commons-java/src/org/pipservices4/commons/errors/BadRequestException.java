@@ -1,11 +1,14 @@
 package org.pipservices4.commons.errors;
 
+import java.io.Serial;
+
 /**
  * Errors due to improper user requests.
  * <p>
  * For example: missing or incorrect parameters.
  */
 public class BadRequestException extends ApplicationException {
+    @Serial
     private static final long serialVersionUID = -6858254084911710376L;
 
     /**
