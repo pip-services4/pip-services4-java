@@ -16,25 +16,25 @@ import org.pipservices4.config.connect.MemoryDiscovery;
  * @see [[MemoryCredentialStore]]
  */
 public class DefaultConfigFactory extends Factory {
-    public static final Descriptor MemoryCredentialStoreDescriptor = new Descriptor("pip-services", "credential-store",
+    private static final Descriptor MemoryCredentialStoreDescriptor = new Descriptor("pip-services", "credential-store",
             "memory", "*", "1.0");        
-    public static final Descriptor MemoryConfigReaderDescriptor = new Descriptor("pip-services", "config-reader",
+    private static final Descriptor MemoryConfigReaderDescriptor = new Descriptor("pip-services", "config-reader",
             "memory", "*", "1.0");
-    public static final Descriptor JsonConfigReaderDescriptor = new Descriptor("pip-services", "config-reader", "json",
+    private static final Descriptor JsonConfigReaderDescriptor = new Descriptor("pip-services", "config-reader", "json",
             "*", "1.0");
-    public static final Descriptor YamlConfigReaderDescriptor = new Descriptor("pip-services", "config-reader", "yaml",
+    private static final Descriptor YamlConfigReaderDescriptor = new Descriptor("pip-services", "config-reader", "yaml",
             "*", "1.0");
-    public static final Descriptor MemoryDiscoveryDescriptor = new Descriptor("pip-services", "discovery",
+    private static final Descriptor MemoryDiscoveryDescriptor = new Descriptor("pip-services", "discovery",
             "memory", "*", "1.0");            
 
     /**
      * Create a new instance of the factory.
      */
     public DefaultConfigFactory() {
-        registerAsType(MemoryCredentialStoreDescriptor, MemoryCredentialStore.class);
-        registerAsType(MemoryConfigReaderDescriptor, MemoryConfigReader.class);
-        registerAsType(JsonConfigReaderDescriptor, JsonConfigReader.class);
-        registerAsType(YamlConfigReaderDescriptor, YamlConfigReader.class);
-        registerAsType(MemoryDiscoveryDescriptor, MemoryDiscovery.class);
+        registerAsType(DefaultConfigFactory.MemoryCredentialStoreDescriptor, MemoryCredentialStore.class);
+        registerAsType(DefaultConfigFactory.MemoryConfigReaderDescriptor, MemoryConfigReader.class);
+        registerAsType(DefaultConfigFactory.JsonConfigReaderDescriptor, JsonConfigReader.class);
+        registerAsType(DefaultConfigFactory.YamlConfigReaderDescriptor, YamlConfigReader.class);
+        registerAsType(DefaultConfigFactory.MemoryDiscoveryDescriptor, MemoryDiscovery.class);
     }
 }
