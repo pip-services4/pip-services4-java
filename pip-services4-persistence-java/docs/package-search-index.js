@@ -1,0 +1,1 @@
+packageSearchIndex = [{"l":"All Packages","u":"allpackages-index.html"},{"l":"org.pipservices4.persistence.persistence"},{"l":"org.pipservices4.persistence.read"},{"l":"org.pipservices4.persistence.util"},{"l":"org.pipservices4.persistence.write"}];updateSearchResults();
