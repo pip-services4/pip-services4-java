@@ -7,6 +7,6 @@ Extracted from Components module from Pip.Services 3
 * Replaced **context** with **context**
 * Merged default factories under **DefaultObservabilityFactory**
 
-## <a name="0.0.1"></a> 0.0.1 (2023-11-10)
+## <a name="0.0.1"></a> 0.0.2-0.0.3 (2023-11-13)
 Fixed factory
 
