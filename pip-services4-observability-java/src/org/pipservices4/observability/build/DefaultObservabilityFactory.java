@@ -38,6 +38,7 @@ public class DefaultObservabilityFactory extends Factory {
      * Create a new instance of the factory.
      */
     public DefaultObservabilityFactory() {
+        super();
         registerAsType(DefaultObservabilityFactory.NullCountersDescriptor, NullCounters.class);
         registerAsType(DefaultObservabilityFactory.LogCountersDescriptor, LogCounters.class);
         registerAsType(DefaultObservabilityFactory.CompositeCountersDescriptor, CompositeCounters.class);

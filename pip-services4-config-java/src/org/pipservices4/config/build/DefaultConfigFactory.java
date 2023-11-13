@@ -31,6 +31,7 @@ public class DefaultConfigFactory extends Factory {
      * Create a new instance of the factory.
      */
     public DefaultConfigFactory() {
+        super();
         registerAsType(DefaultConfigFactory.MemoryCredentialStoreDescriptor, MemoryCredentialStore.class);
         registerAsType(DefaultConfigFactory.MemoryConfigReaderDescriptor, MemoryConfigReader.class);
         registerAsType(DefaultConfigFactory.JsonConfigReaderDescriptor, JsonConfigReader.class);
