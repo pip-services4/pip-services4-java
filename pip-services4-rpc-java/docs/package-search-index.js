@@ -1,0 +1,1 @@
+packageSearchIndex = [{"l":"All Packages","u":"allpackages-index.html"},{"l":"org.pipservices4.rpc.clients"},{"l":"org.pipservices4.rpc.commands"},{"l":"org.pipservices4.rpc.trace"}];updateSearchResults();
