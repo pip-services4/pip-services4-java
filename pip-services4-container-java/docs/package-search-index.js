@@ -1,0 +1,1 @@
+packageSearchIndex = [{"l":"All Packages","u":"allpackages-index.html"},{"l":"org.pipservices4.container.build"},{"l":"org.pipservices4.container.config"},{"l":"org.pipservices4.container.containers"},{"l":"org.pipservices4.container.refer"},{"l":"org.pipservices4.container.test"}];updateSearchResults();

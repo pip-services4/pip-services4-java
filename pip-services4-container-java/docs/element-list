@@ -1,0 +1,5 @@
+org.pipservices4.container.build
+org.pipservices4.container.config
+org.pipservices4.container.containers
+org.pipservices4.container.refer
+org.pipservices4.container.test
