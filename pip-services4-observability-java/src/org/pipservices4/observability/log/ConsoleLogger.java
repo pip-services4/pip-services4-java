@@ -1,5 +1,6 @@
 package org.pipservices4.observability.log;
 
+import org.pipservices4.components.context.ContextResolver;
 import org.pipservices4.components.context.IContext;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
@@ -59,7 +60,7 @@ public class ConsoleLogger extends Logger {
 		StringBuilder build = new StringBuilder();
 
 		build.append('[');
-		build.append(context != null ? context : "---");
+		build.append(context != null ? ContextResolver.getTraceId(context) : "---");
 		build.append(':');
 		build.append(LogLevelConverter.toString(level));
 		build.append(':');
