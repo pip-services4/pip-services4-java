@@ -1,0 +1,5 @@
+org.pipservices4.http.auth
+org.pipservices4.http.build
+org.pipservices4.http.clients
+org.pipservices4.http.controllers
+org.pipservices4.http.test
