@@ -1,8 +1,6 @@
 package org.pipservices4.http.auth;
 
 import java.security.Principal;
-import java.util.HashMap;
-import java.util.Map;
 
 public class UserPrincipal implements Principal {
     private String _userName;

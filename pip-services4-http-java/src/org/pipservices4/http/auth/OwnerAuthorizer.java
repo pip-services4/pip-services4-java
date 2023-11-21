@@ -12,33 +12,51 @@ import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 
 public class OwnerAuthorizer {
-    public AuthorizeFunction<ContainerRequestContext,
-            Inflector<ContainerRequestContext, Response>, Response> owner(String idParam) {
+    public AuthorizeFunction<ContainerRequestContext, Inflector<ContainerRequestContext, Response>, Response> owner(
+            String idParam) {
         return (ContainerRequestContext req, Inflector<ContainerRequestContext, Response> nextFunc) -> {
             if (req.getSecurityContext().getUserPrincipal() == null) {
                 return HttpResponseSender.sendError(
                         new UnauthorizedException(
                                 null,
                                 "NOT_SIGNED",
-                                "User must be signed in to perform this operation"
-                        ).withStatus(401)
-                );
+                                "User must be signed in to perform this operation").withStatus(401));
             } else {
                 String userId = this.getQueryParameter(req, idParam);
-                // TODO
-//                if (req.user_id != userId) {
-//                    HttpResponseSender.sendError(
-//                            req, res,
-//                            new UnauthorizedException(
-//                                    null,
-//                                    'FORBIDDEN',
-//                                    'Only data owner can perform this operation'
-//                            ).withStatus(403)
-//                    );
-//                } else {
-//                    next();
-//                }
-                return nextFunc.apply(req);
+                if (req.getProperty("user_id") != userId) {
+                    return HttpResponseSender.sendError(
+                            new UnauthorizedException(
+                                    null,
+                                    "FORBIDDEN",
+                                    "Only data owner can perform this operation").withStatus(403));
+                } else {
+                    return nextFunc.apply(req);
+                }
+            }
+        };
+    }
+
+    public AuthorizeFunction<ContainerRequestContext, Inflector<ContainerRequestContext, Response>, Response> ownerOrAdmin(
+            String idParam) {
+        return (ContainerRequestContext req, Inflector<ContainerRequestContext, Response> nextFunc) -> {
+            if (req.getSecurityContext().getUserPrincipal() == null) {
+                return HttpResponseSender.sendError(
+                        new UnauthorizedException(
+                                null,
+                                "NOT_SIGNED",
+                                "User must be signed in to perform this operation").withStatus(401));
+            } else {
+                String userId = this.getQueryParameter(req, idParam);
+                boolean isAdmin = req.getSecurityContext().isUserInRole("admin");
+                if (req.getProperty("user_id") != userId && !isAdmin) {
+                    return HttpResponseSender.sendError(
+                            new UnauthorizedException(
+                                    null,
+                                    "FORBIDDEN",
+                                    "Only data owner can perform this operation").withStatus(403));
+                } else {
+                    return nextFunc.apply(req);
+                }
             }
         };
     }
