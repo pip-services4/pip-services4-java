@@ -1,7 +1,5 @@
 FROM maven:3.8.5-openjdk-18-slim
 
-RUN sleep 6
-
 # set working directory
 WORKDIR /app
 
