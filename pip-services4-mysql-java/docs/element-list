@@ -1,0 +1,3 @@
+org.pipservices4.mysql.build
+org.pipservices4.mysql.connect
+org.pipservices4.mysql.persistence

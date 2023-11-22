@@ -1,0 +1,1 @@
+packageSearchIndex = [{"l":"All Packages","u":"allpackages-index.html"},{"l":"org.pipservices4.mysql.build"},{"l":"org.pipservices4.mysql.connect"},{"l":"org.pipservices4.mysql.persistence"}];updateSearchResults();
