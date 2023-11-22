@@ -4,7 +4,7 @@
 
     <groupId>org.pipservices</groupId>
     <artifactId>pip-services4-commons</artifactId>
-    <version>0.0.4</version>
+    <version>0.0.5</version>
     <packaging>jar</packaging>
 
     <name>Pip.Services4 Commons</name>

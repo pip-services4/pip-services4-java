@@ -39,7 +39,7 @@ public class ErrorDescriptionFactory {
             description.setCategory(ErrorCategory.Unknown);
             description.setStatus(500);
             description.setCode("UNKNOWN");
-            description.setMessage(ex.getMessage().isEmpty() ? ex.toString() : ex.getMessage());
+            description.setMessage(ex.getMessage() == null || ex.getMessage().isEmpty() ? ex.toString() : ex.getMessage());
 
             StringWriter sw = new StringWriter();
             ex.printStackTrace(new PrintWriter(sw));
