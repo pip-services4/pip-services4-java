@@ -15,6 +15,6 @@ Extracted the code from components module in Pip.Services 3
 ## <a name="0.0.2"></a> 0.0.2 (2023-11-13)
 Fixed factory
 
-## <a name="0.0.3"></a> 0.0.3 (2023-11-14)
+## <a name="0.0.3"></a> 0.0.3-0.0.4 (2023-11-14)
 Fixed ConsoleLogger
 

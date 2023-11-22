@@ -2,7 +2,7 @@
     "name": "pip-services4-observability",
     "type": "module",
     "language": "java",
-    "version": "0.0.3",
+    "version": "0.0.4s",
     "build": 0,
     "registry": "pipservices",
     "artifacts": [
