@@ -1,0 +1,1 @@
+packageSearchIndex = [{"l":"All Packages","u":"allpackages-index.html"},{"l":"org.pipservices4.grpc.build"},{"l":"org.pipservices4.grpc.clients"},{"l":"org.pipservices4.grpc.commandable"},{"l":"org.pipservices4.grpc.controllers"},{"l":"org.pipservices4.grpc.test"}];updateSearchResults();
