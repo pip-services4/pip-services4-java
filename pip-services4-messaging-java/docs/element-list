@@ -1,0 +1,4 @@
+org.pipservices4.messaging.build
+org.pipservices4.messaging.connect
+org.pipservices4.messaging.queues
+org.pipservices4.messaging.test
