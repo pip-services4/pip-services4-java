@@ -1,0 +1,3 @@
+org.pipservices4.memcached.build
+org.pipservices4.memcached.cache
+org.pipservices4.memcached.lock
