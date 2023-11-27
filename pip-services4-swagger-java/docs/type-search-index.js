@@ -1,0 +1,1 @@
+typeSearchIndex = [{"l":"All Classes and Interfaces","u":"allclasses-index.html"},{"p":"org.pipservices4.swagger.build","l":"DefaultSwaggerFactory"},{"p":"org.pipservices4.swagger.controllers","l":"SwaggerController"}];updateSearchResults();
