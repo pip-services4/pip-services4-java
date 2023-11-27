@@ -1,0 +1,1 @@
+typeSearchIndex = [{"l":"All Classes and Interfaces","u":"allclasses-index.html"},{"p":"org.pipservices4.redis.build","l":"DefaultRedisFactory"},{"p":"org.pipservices4.redis.cache","l":"RedisCache"},{"p":"org.pipservices4.redis.lock","l":"RedisLock"}];updateSearchResults();
