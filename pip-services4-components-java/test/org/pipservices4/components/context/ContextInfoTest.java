@@ -4,6 +4,8 @@ import static org.junit.Assert.*;
 
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
+import java.util.Map;
+import java.util.Objects;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -25,6 +27,20 @@ public final class ContextInfoTest {
         contextInfo.setName(update);
 
         assertEquals(contextInfo.getName(), update);
+    }
+
+    @Test
+    public void testContext() {
+        var ctx = Context.fromTraceId("my_trace_id");
+        assert Objects.equals(ContextResolver.getTraceId(ctx), "my_trace_id");
+
+        ctx = new Context(Map.of("trace_id", "my_map_trace_id"));
+        assert Objects.equals(ContextResolver.getTraceId(ctx), "my_map_trace_id");
+
+        ctx = new Context(Map.of("trace_id", new Object(), "client", new Object(), "user", new Object()));
+        assert ContextResolver.getTraceId(ctx) == null;
+        assert ContextResolver.getClient(ctx) == null;
+        assert ContextResolver.getUser(ctx) == null;
     }
 
     @Test
