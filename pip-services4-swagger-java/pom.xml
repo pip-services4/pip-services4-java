@@ -68,7 +68,7 @@
         </resources>
         <testResources>
             <testResource>
-                <directory>${basedir}/test/resources</directory>
+                <directory>example/resources</directory>
             </testResource>
         </testResources>
         <directory>${basedir}/lib</directory>
