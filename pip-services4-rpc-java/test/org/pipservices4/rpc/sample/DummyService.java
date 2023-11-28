@@ -115,14 +115,14 @@ public class DummyService implements IDummyService, ICommandable {
 
 	@Override
 	public String checkTraceId(IContext context) {
-		return context != null ? ContextResolver.getTraceId(context) : null;
+		return ContextResolver.getTraceId(context);
 	}
 
 	@Override
 	public void raiseException(IContext context)
 		throws ApplicationException {
 
-		throw new NotFoundException(context != null ? ContextResolver.getTraceId(context) : null, "TEST_ERROR", "Dummy error in service!");
+		throw new NotFoundException(ContextResolver.getTraceId(context), "TEST_ERROR", "Dummy error in service!");
 	}
 
 	@Override

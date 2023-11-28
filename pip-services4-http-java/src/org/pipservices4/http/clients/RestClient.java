@@ -366,7 +366,7 @@ public class RestClient implements IOpenable, IConfigurable, IReferenceable {
             throws ApplicationException {
 
         if (_client == null) {
-            throw new InvalidStateException(context != null ? ContextResolver.getTraceId(context) : null, "NOT_OPENED", "Client is not opened");
+            throw new InvalidStateException(ContextResolver.getTraceId(context), "NOT_OPENED", "Client is not opened");
         }
 
         Response response;
@@ -374,7 +374,7 @@ public class RestClient implements IOpenable, IConfigurable, IReferenceable {
                 () -> _client.target(uri).request(mediaType).headers(_headers).method(method, body));
 
         if (response == null) {
-            throw new UnknownException(context != null ? ContextResolver.getTraceId(context) : null, "NO_RESPONSE",
+            throw new UnknownException(ContextResolver.getTraceId(context), "NO_RESPONSE",
                     "Unable to get a result from " + method + " " + uri);
         }
 
@@ -387,7 +387,7 @@ public class RestClient implements IOpenable, IConfigurable, IReferenceable {
 //                String res = response.readEntity(String.class);
                 Object res = response.readEntity(Object.class);
                 String responseContent = res.toString();
-                throw new UnknownException(context != null ? ContextResolver.getTraceId(context) : null, "UNKNOWN_ERROR", responseContent);
+                throw new UnknownException(ContextResolver.getTraceId(context), "UNKNOWN_ERROR", responseContent);
             }
 
             if (errorObject != null)

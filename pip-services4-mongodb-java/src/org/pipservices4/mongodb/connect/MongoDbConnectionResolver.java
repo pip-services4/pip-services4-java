@@ -84,20 +84,20 @@ public class MongoDbConnectionResolver implements IReferenceable, IConfigurable 
 
         String host = connection.getHost();
         if (host == null)
-            throw new ConfigException(context != null ? ContextResolver.getTraceId(context) : null, "NO_HOST", "Connection host is not set");
+            throw new ConfigException(ContextResolver.getTraceId(context), "NO_HOST", "Connection host is not set");
 
         int port = connection.getPort();
         if (port == 0)
-            throw new ConfigException(context != null ? ContextResolver.getTraceId(context) : null, "NO_PORT", "Connection port is not set");
+            throw new ConfigException(ContextResolver.getTraceId(context), "NO_PORT", "Connection port is not set");
 
         String database = connection.getAsNullableString("database");
         if (database == null)
-            throw new ConfigException(context != null ? ContextResolver.getTraceId(context) : null, "NO_DATABASE", "Connection database is not set");
+            throw new ConfigException(ContextResolver.getTraceId(context), "NO_DATABASE", "Connection database is not set");
     }
 
     private void validateConnections(IContext context, List<ConnectionParams> connections) throws ConfigException {
         if (connections == null || connections.isEmpty())
-            throw new ConfigException(context != null ? ContextResolver.getTraceId(context) : null, "NO_CONNECTION", "Database connection is not set");
+            throw new ConfigException(ContextResolver.getTraceId(context), "NO_CONNECTION", "Database connection is not set");
 
         for (ConnectionParams connection : connections)
             validateConnection(context, connection);

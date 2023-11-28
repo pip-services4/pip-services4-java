@@ -137,7 +137,7 @@ public class MemcachedCache implements ICache, IConfigurable, IReferenceable, IO
         var connections = this._connectionResolver.resolveAll(context);
         if (connections.isEmpty()) {
             throw new ConfigException(
-                    context != null ? ContextResolver.getTraceId(context) : null,
+                    ContextResolver.getTraceId(context),
                     "NO_CONNECTION",
                     "Connection is not configured"
             );
@@ -176,7 +176,7 @@ public class MemcachedCache implements ICache, IConfigurable, IReferenceable, IO
         if (!this.isOpen()) {
             throw new RuntimeException(
                     new InvalidStateException(
-                            context != null ? ContextResolver.getTraceId(context) : null,
+                            ContextResolver.getTraceId(context),
                             "NOT_OPENED",
                             "Connection is not opened"
                     )

@@ -275,7 +275,7 @@ public class MongoDbPersistence<T> implements IReferenceable, IUnreferenceable, 
      */
     protected void checkOpened(IContext context) throws InvalidStateException {
         if (!isOpen()) {
-            throw new InvalidStateException(context != null ? ContextResolver.getTraceId(context) : null,
+            throw new InvalidStateException(ContextResolver.getTraceId(context),
                     "NOT_OPENED",
                     "Operation cannot be performed because the component is closed");
         }
@@ -373,11 +373,11 @@ public class MongoDbPersistence<T> implements IReferenceable, IUnreferenceable, 
             this._connection.open(context);
 
         if (this._connection == null) {
-            throw new InvalidStateException(context != null ? ContextResolver.getTraceId(context) : null, "NO_CONNECTION", "MongoDB connection is missing");
+            throw new InvalidStateException(ContextResolver.getTraceId(context), "NO_CONNECTION", "MongoDB connection is missing");
         }
 
         if (!this._connection.isOpen())
-            throw new ConnectionException(context != null ? ContextResolver.getTraceId(context) : null, "CONNECT_FAILED", "MongoDB connection is not opened");
+            throw new ConnectionException(ContextResolver.getTraceId(context), "CONNECT_FAILED", "MongoDB connection is not opened");
 
         this._opened = false;
 
@@ -406,7 +406,7 @@ public class MongoDbPersistence<T> implements IReferenceable, IUnreferenceable, 
         } catch (Exception ex) {
             this._db = null;
             this._client = null;
-            throw new ConnectionException(context != null ? ContextResolver.getTraceId(context) : null, "CONNECT_FAILED", "Connection to mongodb failed").withCause(ex);
+            throw new ConnectionException(ContextResolver.getTraceId(context), "CONNECT_FAILED", "Connection to mongodb failed").withCause(ex);
         }
     }
 
@@ -421,7 +421,7 @@ public class MongoDbPersistence<T> implements IReferenceable, IUnreferenceable, 
             return;
 
         if (this._connection == null)
-            throw new InvalidStateException(context != null ? ContextResolver.getTraceId(context) : null, "NO_CONNECTION", "MongoDb connection is missing");
+            throw new InvalidStateException(ContextResolver.getTraceId(context), "NO_CONNECTION", "MongoDb connection is missing");
 
         if (this._localConnection)
             this._connection.close(context);

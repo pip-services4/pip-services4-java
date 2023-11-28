@@ -166,7 +166,7 @@ public abstract class DirectClient<T> implements IConfigurable, IOpenable, IRefe
             return;
 
         if (_service == null) {
-            throw new ConnectionException(context != null ? ContextResolver.getTraceId(context) : null,
+            throw new ConnectionException(ContextResolver.getTraceId(context),
                     "NO_SERVICE", "Service reference is missing");
         }
 

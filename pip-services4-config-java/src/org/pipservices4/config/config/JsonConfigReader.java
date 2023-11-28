@@ -73,7 +73,7 @@ public class JsonConfigReader extends FileConfigReader {
 	 */
 	public Object readObject(IContext context, ConfigParams parameters) throws ApplicationException {
 		if (_path == null)
-			throw new ConfigException(context != null ? ContextResolver.getTraceId(context) : null, "NO_PATH", "Missing config file path");
+			throw new ConfigException(ContextResolver.getTraceId(context), "NO_PATH", "Missing config file path");
 
 		try {
 			Path path = Paths.get(_path);
@@ -83,7 +83,7 @@ public class JsonConfigReader extends FileConfigReader {
 
 			return jsonMapper.readValue(json, typeRef);
 		} catch (Exception ex) {
-			throw new FileException(context != null ? ContextResolver.getTraceId(context) : null, "READ_FAILED", "Failed reading configuration " + _path + ": " + ex)
+			throw new FileException(ContextResolver.getTraceId(context), "READ_FAILED", "Failed reading configuration " + _path + ": " + ex)
 					.withDetails("path", _path).withCause(ex);
 		}
 	}

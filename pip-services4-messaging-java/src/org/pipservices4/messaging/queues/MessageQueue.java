@@ -189,7 +189,7 @@ public abstract class MessageQueue implements IMessageQueue, IReferenceable, ICo
     protected void checkOpen(IContext context) throws InvalidStateException {
         if (!this.isOpen()) {
             throw new InvalidStateException(
-                    context != null ? ContextResolver.getTraceId(context) : null,
+                    ContextResolver.getTraceId(context),
                     "NOT_OPENED",
                     "The queue is not opened"
             );

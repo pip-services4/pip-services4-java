@@ -208,7 +208,7 @@ public class Container implements IConfigurable, IReferenceable, IUnreferenceabl
     public void open(IContext context) throws ApplicationException {
         if (this._references != null)
             throw new InvalidStateException(
-                    context != null ? ContextResolver.getTraceId(context) : null,
+                    ContextResolver.getTraceId(context),
                     "ALREADY_OPENED",
                     "Container was already opened"
             );
@@ -250,7 +250,7 @@ public class Container implements IConfigurable, IReferenceable, IUnreferenceabl
     @Override
     public void close(IContext context) throws ApplicationException {
         if (_references == null)
-            throw new InvalidStateException(context != null ? ContextResolver.getTraceId(context) : null, "NO_STARTED", "Container was not started");
+            throw new InvalidStateException(ContextResolver.getTraceId(context), "NO_STARTED", "Container was not started");
 
         try {
             _logger.trace(context, "Stopping %s container", _info.getName());

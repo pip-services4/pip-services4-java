@@ -321,7 +321,7 @@ public class HttpEndpoint implements IOpenable, IConfigurable, IReferenceable {
             _logger.info(context, "Opened REST service at %s", _url);
         } catch (Exception ex) {
             _server = null;
-            throw new ConnectionException(context != null ? ContextResolver.getTraceId(context) : null, "CANNOT_CONNECT", "Opening HTTP endpoint failed").wrap(ex)
+            throw new ConnectionException(ContextResolver.getTraceId(context), "CANNOT_CONNECT", "Opening HTTP endpoint failed").wrap(ex)
                     .withDetails("url", _url);
         }
     }

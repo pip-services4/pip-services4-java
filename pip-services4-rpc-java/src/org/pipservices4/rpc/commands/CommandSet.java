@@ -252,7 +252,7 @@ public class CommandSet {
 	 */
 	public Object execute(IContext context, String commandName, Parameters args) throws ApplicationException {
 		ICommand cref = findCommand(commandName);
-		String traceId = context != null ? ContextResolver.getTraceId(context) : null;
+		String traceId = ContextResolver.getTraceId(context);
 		if (cref == null) {
 			throw new BadRequestException(traceId, "CMD_NOT_FOUND", "Requested command does not exist")
 					.withDetails("command", commandName);

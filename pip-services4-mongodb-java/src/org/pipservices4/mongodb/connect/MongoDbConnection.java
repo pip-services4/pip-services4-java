@@ -215,7 +215,7 @@ public class MongoDbConnection implements IReferenceable, IConfigurable, IOpenab
             this._databaseName = this._db.getName();
         } catch (Exception ex) {
             throw new ConnectionException(
-                    context != null ? ContextResolver.getTraceId(context) : null,
+                    ContextResolver.getTraceId(context),
                     "CONNECT_FAILED",
                     "Connection to mongodb failed"
             ).withCause(ex);

@@ -163,7 +163,7 @@ public class ElasticSearchLogger extends CachedLogger implements IReferenceable,
         var connection = this._connectionResolver.resolve(context);
         if (connection == null) {
             throw new ConfigException(
-                    context != null ? ContextResolver.getTraceId(context) : null,
+                    ContextResolver.getTraceId(context),
                     "NO_CONNECTION",
                     "Connection is not configured"
             );

@@ -57,7 +57,7 @@ public abstract class CachedLogger extends Logger implements IReconfigurable {
     protected void write(LogLevel level, IContext context, Exception ex, String message) {
         ErrorDescription error = ex != null ? ErrorDescriptionFactory.create(ex) : null;
         String source = getComputerName(); // Todo: add jar/exe name
-        LogMessage logMessage = new LogMessage(level, source, context != null ? ContextResolver.getTraceId(context) : null, error, message);
+        LogMessage logMessage = new LogMessage(level, source, ContextResolver.getTraceId(context), error, message);
 
         synchronized (_lock) {
             _cache.add(logMessage);

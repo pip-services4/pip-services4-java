@@ -224,7 +224,7 @@ public class GrpcEndpoint implements IOpenable, IConfigurable, IReferenceable {
             this._server = null;
 
             throw new ConnectionException(
-                    context != null ? ContextResolver.getTraceId(context) : null,
+                    ContextResolver.getTraceId(context),
                     "CANNOT_CONNECT",
                     "Opening GRPC service failed"
             ).wrap(ex).withDetails("url", this._uri);

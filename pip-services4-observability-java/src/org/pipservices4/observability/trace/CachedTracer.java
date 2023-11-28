@@ -103,7 +103,7 @@ public abstract class CachedTracer implements ITracer, IReconfigurable, IReferen
                 _source,
                 component,
                 operation,
-                context != null ? ContextResolver.getTraceId(context) : null,
+                ContextResolver.getTraceId(context),
                 duration,
                 errorDesc
         );

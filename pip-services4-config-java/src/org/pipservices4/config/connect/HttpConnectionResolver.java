@@ -97,7 +97,7 @@ public class HttpConnectionResolver implements IReferenceable, IConfigurable {
 
 	private void validateConnection(IContext context, ConnectionParams connection, CredentialParams credential) throws ApplicationException {
 		if (connection == null)
-			throw new ConfigException(context != null ? ContextResolver.getTraceId(context) : null, "NO_CONNECTION", "HTTP connection is not set");
+			throw new ConfigException(ContextResolver.getTraceId(context), "NO_CONNECTION", "HTTP connection is not set");
 
 		String uri = connection.getUri();
 		if (uri != null && !uri.isEmpty())
@@ -105,24 +105,24 @@ public class HttpConnectionResolver implements IReferenceable, IConfigurable {
 
 		String protocol = connection.getProtocolWithDefault("http");
 		if (!"http".equals(protocol) && !"https".equals(protocol)) {
-			throw new ConfigException(context != null ? ContextResolver.getTraceId(context) : null, "WRONG_PROTOCOL", "Protocol is not supported by REST connection")
+			throw new ConfigException(ContextResolver.getTraceId(context), "WRONG_PROTOCOL", "Protocol is not supported by REST connection")
 					.withDetails("protocol", protocol);
 		}
 
 		String host = connection.getHost();
 		if (host == null)
-			throw new ConfigException(context != null ? ContextResolver.getTraceId(context) : null, "NO_HOST", "Connection host is not set");
+			throw new ConfigException(ContextResolver.getTraceId(context), "NO_HOST", "Connection host is not set");
 
 		int port = connection.getPort();
 		if (port == 0)
-			throw new ConfigException(context != null ? ContextResolver.getTraceId(context) : null, "NO_PORT", "Connection port is not set");
+			throw new ConfigException(ContextResolver.getTraceId(context), "NO_PORT", "Connection port is not set");
 
 		// Check HTTPS credentials
 		if (protocol.equals("https")) {
 			// Check for credential
 			if (credential == null) {
 				throw new ConfigException(
-						context != null ? ContextResolver.getTraceId(context) : null, "NO_CREDENTIAL", "SSL certificates are not configured for HTTPS protocol");
+						ContextResolver.getTraceId(context), "NO_CREDENTIAL", "SSL certificates are not configured for HTTPS protocol");
 			} else {
 				// Sometimes when we use https we are on an internal network and do not want to have to deal with security.
 				// When we need a https connection and we don't want to pass credentials, flag is 'credential.internal_network',
@@ -130,10 +130,10 @@ public class HttpConnectionResolver implements IReferenceable, IConfigurable {
 				if (credential.getAsNullableString("internal_network") == null) {
 					if (credential.getAsNullableString("ssl_key_file") == null) {
 						throw new ConfigException(
-								context != null ? ContextResolver.getTraceId(context) : null, "NO_SSL_KEY_FILE", "SSL key file is not configured in credentials");
+								ContextResolver.getTraceId(context), "NO_SSL_KEY_FILE", "SSL key file is not configured in credentials");
 					} else if (credential.getAsNullableString("ssl_crt_file") == null) {
 						throw new ConfigException(
-								context != null ? ContextResolver.getTraceId(context) : null, "NO_SSL_CRT_FILE", "SSL crt file is not configured in credentials");
+								ContextResolver.getTraceId(context), "NO_SSL_CRT_FILE", "SSL crt file is not configured in credentials");
 					}
 				}
 			}

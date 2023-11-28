@@ -260,7 +260,7 @@ public class GrpcClient implements IOpenable, IConfigurable, IReferenceable {
         } catch (Exception ex) {
             this._channel = null;
             throw new ConnectionException(
-                    context != null ? ContextResolver.getTraceId(context) : null,
+                    ContextResolver.getTraceId(context),
                     "CANNOT_CONNECT",
                     "Opening GRPC client failed"
             ).wrap(ex).withDetails("url", this._uri);

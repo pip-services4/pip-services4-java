@@ -25,7 +25,7 @@ public class ContainerConfigReader {
     public static ContainerConfig readFromFile(IContext context, String path, ConfigParams parameters)
             throws ApplicationException {
         if (path == null)
-            throw new ConfigException(context != null ? ContextResolver.getTraceId(context) : null, "NO_PATH", "Missing config file path");
+            throw new ConfigException(ContextResolver.getTraceId(context), "NO_PATH", "Missing config file path");
 
         int index = path.lastIndexOf('.');
         String ext = index > 0 ? path.substring(index + 1).toLowerCase() : "";

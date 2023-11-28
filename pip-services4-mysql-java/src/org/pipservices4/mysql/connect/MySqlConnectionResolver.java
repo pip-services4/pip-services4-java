@@ -81,7 +81,7 @@ public class MySqlConnectionResolver implements IReferenceable, IConfigurable {
         var host = connection.getHost();
         if (host == null) {
             throw new ConfigException(
-                    context != null ? ContextResolver.getTraceId(context) : null,
+                    ContextResolver.getTraceId(context),
                     "NO_HOST",
                     "Connection host is not set"
             );
@@ -90,7 +90,7 @@ public class MySqlConnectionResolver implements IReferenceable, IConfigurable {
         var port = connection.getPort();
         if (port == 0) {
             throw new ConfigException(
-                    context != null ? ContextResolver.getTraceId(context) : null,
+                    ContextResolver.getTraceId(context),
                     "NO_PORT",
                     "Connection port is not set"
             );
@@ -99,7 +99,7 @@ public class MySqlConnectionResolver implements IReferenceable, IConfigurable {
         var database = connection.getAsNullableString("database");
         if (database == null) {
             throw new ConfigException(
-                    context != null ? ContextResolver.getTraceId(context) : null,
+                    ContextResolver.getTraceId(context),
                     "NO_DATABASE",
                     "Connection database is not set"
             );
@@ -109,7 +109,7 @@ public class MySqlConnectionResolver implements IReferenceable, IConfigurable {
     private void validateConnections(IContext context, List<ConnectionParams> connections) throws ConfigException {
         if (connections == null || connections.isEmpty()) {
             throw new ConfigException(
-                    context != null ? ContextResolver.getTraceId(context) : null,
+                    ContextResolver.getTraceId(context),
                     "NO_CONNECTION",
                     "Database connection is not set"
             );

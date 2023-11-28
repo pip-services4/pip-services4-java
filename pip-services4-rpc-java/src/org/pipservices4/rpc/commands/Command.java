@@ -88,12 +88,12 @@ public class Command implements ICommand {
     @Override
     public Object execute(IContext context, Parameters args) throws ApplicationException {
         if (_schema != null)
-            _schema.validateAndThrowException(context != null ? ContextResolver.getTraceId(context) : null, args);
+            _schema.validateAndThrowException(ContextResolver.getTraceId(context), args);
 
         try {
             return _function.execute(context, args);
         } catch (Throwable ex) {
-            throw new InvocationException(context != null ? ContextResolver.getTraceId(context) : null, "EXEC_FAILED", "Execution " + _name + " failed: " + ex)
+            throw new InvocationException(ContextResolver.getTraceId(context), "EXEC_FAILED", "Execution " + _name + " failed: " + ex)
                     .withDetails("command", _name).wrap(ex);
         }
     }

@@ -170,7 +170,7 @@ public class MySqlConnection implements IReferenceable, IConfigurable, IOpenable
 
         } catch (Exception ex) {
             throw new ConnectionException(
-                    context != null ? ContextResolver.getTraceId(context) : null,
+                    ContextResolver.getTraceId(context),
                     "CONNECT_FAILED",
                     "Connection to MySQL failed"
             ).withCause(ex);
@@ -196,7 +196,7 @@ public class MySqlConnection implements IReferenceable, IConfigurable, IOpenable
             this._databaseName = null;
         } catch (Exception ex) {
             throw new ConnectionException(
-                    context != null ? ContextResolver.getTraceId(context) : null,
+                    ContextResolver.getTraceId(context),
                     "DISCONNECT_FAILED",
                     "Disconnect from MySQL failed: "
             ).withCause(ex);

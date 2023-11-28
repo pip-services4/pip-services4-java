@@ -10,7 +10,7 @@ import org.pipservices4.components.context.IContext;
 public class MustacheException extends BadRequestException {
     public MustacheException(IContext context, String code, String message, int line, int column) {
         super(
-                context != null ? ContextResolver.getTraceId(context) : null,
+                ContextResolver.getTraceId(context),
                 code,
                 line != 0 || column != 0 ? message + " at line " + line + " and column " + column : message
         );

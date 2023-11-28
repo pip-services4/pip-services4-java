@@ -121,7 +121,7 @@ public class CompositeConnectionResolver implements IReferenceable, IConfigurabl
         // Validate if cluster (multiple connections) is supported
         if (!connections.isEmpty() && !this._clusterSupported) {
             throw new ConfigException(
-                    context != null ? ContextResolver.getTraceId(context) : null,
+                    ContextResolver.getTraceId(context),
                     "MULTIPLE_CONNECTIONS_NOT_SUPPORTED",
                     "Multiple (cluster) connections are not supported"
             );
@@ -163,7 +163,7 @@ public class CompositeConnectionResolver implements IReferenceable, IConfigurabl
 
     protected void validateConnection(IContext context, ConnectionParams connection) throws ConfigException {
         if (connection == null)
-            throw new ConfigException(context != null ? ContextResolver.getTraceId(context) : null,
+            throw new ConfigException(ContextResolver.getTraceId(context),
                     "NO_CONNECTION", "Connection parameters are not set is not set");
 
         // URI usually contains all information
@@ -173,20 +173,20 @@ public class CompositeConnectionResolver implements IReferenceable, IConfigurabl
 
         String protocol = connection.getProtocolWithDefault(this._defaultProtocol);
         if (protocol == null) {
-            throw new ConfigException(context != null ? ContextResolver.getTraceId(context) : null, "NO_PROTOCOL", "Connection protocol is not set");
+            throw new ConfigException(ContextResolver.getTraceId(context), "NO_PROTOCOL", "Connection protocol is not set");
         }
         if (this._supportedProtocols != null && !this._supportedProtocols.contains(protocol)) {
-            throw new ConfigException(context != null ? ContextResolver.getTraceId(context) : null, "UNSUPPORTED_PROTOCOL", "The protocol " + protocol + " is not supported");
+            throw new ConfigException(ContextResolver.getTraceId(context), "UNSUPPORTED_PROTOCOL", "The protocol " + protocol + " is not supported");
         }
 
         String host = connection.getHost();
         if (host == null) {
-            throw new ConfigException(context != null ? ContextResolver.getTraceId(context) : null, "NO_HOST", "Connection host is not set");
+            throw new ConfigException(ContextResolver.getTraceId(context), "NO_HOST", "Connection host is not set");
         }
 
         int port = connection.getPortWithDefault(this._defaultPort);
         if (port == 0) {
-            throw new ConfigException(context != null ? ContextResolver.getTraceId(context) : null, "NO_PORT", "Connection port is not set");
+            throw new ConfigException(ContextResolver.getTraceId(context), "NO_PORT", "Connection port is not set");
         }
     }
 

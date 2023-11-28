@@ -62,7 +62,7 @@ public class MessageEnvelope {
      * @param message       the data being sent/received.
      */
     public MessageEnvelope(IContext context, String messageType, Object message) {
-        _traceId = context != null ? ContextResolver.getTraceId(context) : null;
+        _traceId = ContextResolver.getTraceId(context);
         _messageType = messageType;
         _message = message;
         _messageId = IdGenerator.nextLong();
@@ -77,7 +77,7 @@ public class MessageEnvelope {
      * @param message       the data being sent/received.
      */
     public MessageEnvelope(IContext context, String messageType, String message) {
-        _traceId = context != null ? ContextResolver.getTraceId(context) : null;
+        _traceId = ContextResolver.getTraceId(context);
         _messageType = messageType;
         setMessage(message);
         _messageId = IdGenerator.nextLong();

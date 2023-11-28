@@ -38,15 +38,15 @@ public class ReferenceException extends InternalException {
      * @param locator       the locator to find reference to dependent component.
      */
     public ReferenceException(IContext context, Object locator) {
-        super(context != null ? ContextResolver.getTraceId(context) : null, "REF_ERROR", "Failed to obtain reference to " + locator);
+        super(ContextResolver.getTraceId(context), "REF_ERROR", "Failed to obtain reference to " + locator);
         this.withDetails("locator", locator);
     }
 
     public ReferenceException(IContext context, String message) {
-        super(context != null ? ContextResolver.getTraceId(context) : null, "REF_ERROR", message);
+        super(ContextResolver.getTraceId(context), "REF_ERROR", message);
     }
 
     public ReferenceException(IContext context, String code, String message) {
-        super(context != null ? ContextResolver.getTraceId(context) : null, code, message);
+        super(ContextResolver.getTraceId(context), code, message);
     }
 }

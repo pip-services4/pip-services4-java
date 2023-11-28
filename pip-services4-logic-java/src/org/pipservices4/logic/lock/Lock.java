@@ -68,7 +68,7 @@ public abstract class Lock implements ILock, IReconfigurable {
             long now = System.currentTimeMillis();
             if (now > retryTime) {
                 throw new ConflictException(
-                        context != null ? ContextResolver.getTraceId(context) : null,
+                        ContextResolver.getTraceId(context),
                         "LOCK_TIMEOUT",
                         "Acquiring lock " + key + " failed on timeout"
                 ).withDetails("key", key);

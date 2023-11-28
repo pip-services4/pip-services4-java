@@ -92,7 +92,7 @@ public class Event implements IEvent {
 			try {
 				listener.onEvent(context, this, args);
 			} catch (Exception ex) {
-				throw new InvocationException(context != null ? ContextResolver.getTraceId(context) : null,
+				throw new InvocationException(ContextResolver.getTraceId(context),
 						"EXEC_FAILED", "Rasing event " + _name + " failed: " + ex)
 						.withDetails("event", _name).wrap(ex);
 			}

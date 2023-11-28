@@ -311,7 +311,7 @@ public abstract class RestController
             return;
 
         if (_endpoint == null) {
-            throw new InvalidStateException(context != null ? ContextResolver.getTraceId(context) : null, "NO_ENDPOINT", "HTTP endpoint is missing");
+            throw new InvalidStateException(ContextResolver.getTraceId(context), "NO_ENDPOINT", "HTTP endpoint is missing");
         }
 
         if (_localEndpoint) {

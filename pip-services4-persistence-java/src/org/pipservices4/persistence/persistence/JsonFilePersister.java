@@ -122,7 +122,7 @@ public class JsonFilePersister<T> implements ILoader<T>, ISaver<T>, IConfigurabl
     public List<T> load(IContext context) throws ApplicationException {
         if (this._path == null || this._path.isEmpty()) {
             throw new ConfigException(
-                    context != null ? ContextResolver.getTraceId(context) : null,
+                    ContextResolver.getTraceId(context),
                     "NO_PATH",
                     "Data file path is not set"
             );
@@ -136,7 +136,7 @@ public class JsonFilePersister<T> implements ILoader<T>, ISaver<T>, IConfigurabl
         try {
             return _mapper.readValue(file, _typeRef);
         } catch (Exception ex) {
-            throw new FileException(context != null ? ContextResolver.getTraceId(context) : null, "READ_FAILED", "Failed to read data file: " + ex).withCause(ex);
+            throw new FileException(ContextResolver.getTraceId(context), "READ_FAILED", "Failed to read data file: " + ex).withCause(ex);
         }
     }
 
@@ -153,7 +153,7 @@ public class JsonFilePersister<T> implements ILoader<T>, ISaver<T>, IConfigurabl
         try {
             _mapper.writeValue(file, entities);
         } catch (Exception ex) {
-            throw new FileException(context != null ? ContextResolver.getTraceId(context) : null, "WRITE_FAILED", "Failed to write data file: " + ex).withCause(ex);
+            throw new FileException(ContextResolver.getTraceId(context), "WRITE_FAILED", "Failed to write data file: " + ex).withCause(ex);
         }
     }
 

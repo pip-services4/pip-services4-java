@@ -279,7 +279,7 @@ public abstract class GrpcController implements IOpenable, IConfigurable, IRefer
 
         if (this._endpoint == null) {
             throw new InvalidStateException(
-                    context != null ? ContextResolver.getTraceId(context) : null,
+                    ContextResolver.getTraceId(context),
                     "NO_ENDPOINT",
                     "GRPC endpoint is missing"
             );

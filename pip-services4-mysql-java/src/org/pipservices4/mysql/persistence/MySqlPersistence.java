@@ -427,7 +427,7 @@ public class MySqlPersistence<T> implements IReferenceable, IUnreferenceable, IC
 
         if (!this._connection.isOpen()) {
             throw new ConnectionException(
-                    context != null ? ContextResolver.getTraceId(context) : null,
+                    ContextResolver.getTraceId(context),
                     "CONNECT_FAILED",
                     "MySQL connection is not opened"
             );
@@ -452,7 +452,7 @@ public class MySqlPersistence<T> implements IReferenceable, IUnreferenceable, IC
         } catch (Exception ex) {
             this._client = null;
             throw new ConnectionException(
-                    context != null ? ContextResolver.getTraceId(context) : null,
+                    ContextResolver.getTraceId(context),
                     "CONNECT_FAILED",
                     "Connection to MySQL failed"
             ).withCause(ex);
@@ -470,7 +470,7 @@ public class MySqlPersistence<T> implements IReferenceable, IUnreferenceable, IC
 
         if (this._connection == null) {
             throw new InvalidStateException(
-                    context != null ? ContextResolver.getTraceId(context) : null,
+                    ContextResolver.getTraceId(context),
                     "NO_CONNECTION",
                     "MySql connection is missing"
             );

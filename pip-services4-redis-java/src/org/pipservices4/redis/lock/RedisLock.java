@@ -122,7 +122,7 @@ public class RedisLock extends Lock implements IConfigurable, IReferenceable, IO
 
         if (connection == null)
             throw new ConfigException(
-                    context != null ? ContextResolver.getTraceId(context) : null,
+                    ContextResolver.getTraceId(context),
                     "NO_CONNECTION",
                     "Connection is not configured"
             );
@@ -136,7 +136,7 @@ public class RedisLock extends Lock implements IConfigurable, IReferenceable, IO
                 if ((ZonedDateTime.now().toInstant().toEpochMilli() - startTime.toInstant().toEpochMilli()) >= _timeout)
                     throw new RuntimeException(
                             new ConnectionException(
-                                    context != null ? ContextResolver.getTraceId(context) : null,
+                                    ContextResolver.getTraceId(context),
                                     "NO_CONNECTION",
                                     "Redis Connection timeout"
                             )
@@ -181,7 +181,7 @@ public class RedisLock extends Lock implements IConfigurable, IReferenceable, IO
         if (!this.isOpen()) {
             throw new RuntimeException(
                     new InvalidStateException(
-                            context != null ? ContextResolver.getTraceId(context) : null,
+                            ContextResolver.getTraceId(context),
                             "NOT_OPENED",
                             "Connection is not opened"
                     )
