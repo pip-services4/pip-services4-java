@@ -7,7 +7,7 @@
     "registry": "pipservices",
     "artifacts": [
         {
-            "name":  "<name>",
+            "name": "<name>",
             "type": "maven"
         }
     ]
