@@ -100,10 +100,10 @@ Support for environment variables works well in docker or other containers like 
     port: {{HTTP_PORT}}{{^HTTP_PORT}}8080{{/HTTP_PORT}}
 
  # Default Status
-- descriptor: "pip-services:status-service:http:default:1.0"
+- descriptor: "pip-services:status-container:http:default:1.0"
 
 # Default Heartbeat
-- descriptor: "pip-services:heartbeat-service:http:default:1.0"
+- descriptor: "pip-services:heartbeat-container:http:default:1.0"
 {{/if}}
 ```
 
