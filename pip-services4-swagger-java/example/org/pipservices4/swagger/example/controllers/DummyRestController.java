@@ -20,6 +20,7 @@ import org.pipservices4.http.controllers.RestController;
 import org.pipservices4.swagger.example.services.IDummyService;
 
 import java.nio.charset.StandardCharsets;
+import java.nio.file.Paths;
 import java.util.Objects;
 
 public class DummyRestController extends RestController {
@@ -143,6 +144,7 @@ public class DummyRestController extends RestController {
 
         this._swaggerRoute = "/dummies/swagger";
         var dirname = Objects.requireNonNull(this.getClass().getClassLoader().getResource("")).getPath();
-        this.registerOpenApiSpecFromFile(dirname + "./org/pipservices4/swagger/example/controllers/dummy.yml");
+        this.registerOpenApiSpecFromFile(Paths.get(
+                "example/org/pipservices4/swagger/example/controllers/dummy.yml").toString());
     }
 }

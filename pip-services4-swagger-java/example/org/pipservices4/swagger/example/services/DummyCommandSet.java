@@ -20,6 +20,7 @@ public class DummyCommandSet extends CommandSet {
     private final IDummyService _service;
 
     public DummyCommandSet(IDummyService service) {
+        super();
         this._service = service;
 
         this.addCommand(this.makeGetPageByFilterCommand());

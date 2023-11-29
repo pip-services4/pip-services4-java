@@ -120,10 +120,10 @@ Also explicitely adding HttpEndpoint allows to share the same port betwee REST s
     port: 8080
 
 # Swagger Service
-- descriptor: "pip-services:swagger-service:http:default:1.0"
+- descriptor: "pip-services:swagger-controller:http:default:1.0"
 
 # My RESTful Service
-- descriptor: "myservice:service:rest:default:1.0"
+- descriptor: "myservice:controller:rest:default:1.0"
   swagger:
     enable: true
 ```

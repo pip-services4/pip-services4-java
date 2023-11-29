@@ -71,8 +71,8 @@ public class ExampleSwagger {
                     new Descriptor("pip-services", "counters", "log", "default", "1.0"), new LogCounters(),
                     new Descriptor("pip-services", "endpoint", "http", "default", "1.0"), httpEndpoint,
                     new Descriptor("pip-services-dummies", "service", "default", "default", "1.0"), service,
-                    new Descriptor("pip-services-dummies", "controller", "rest", "default", "1.0"), restController,
-                    //new Descriptor("pip-services-dummies", "controller", "commandable-http", "default", "1.0"), httpController,
+                    //new Descriptor("pip-services-dummies", "controller", "rest", "default", "1.0"), restController,
+                    new Descriptor("pip-services-dummies", "controller", "commandable-http", "default", "1.0"), httpController,
                     new Descriptor("pip-services", "status-controller", "rest", "default", "1.0"), statusController,
                     new Descriptor("pip-services", "heartbeat-controller", "rest", "default", "1.0"), heartbeatController,
                     new Descriptor("pip-services", "swagger-controller", "http", "default", "1.0"), swaggerController
