@@ -41,6 +41,10 @@ public final class ContextInfoTest {
         assert ContextResolver.getTraceId(ctx) == null;
         assert ContextResolver.getClient(ctx) == null;
         assert ContextResolver.getUser(ctx) == null;
+
+        assert ContextResolver.getTraceId(null) == null;
+        assert ContextResolver.getClient(null) == null;
+        assert ContextResolver.getUser(null) == null;
     }
 
     @Test

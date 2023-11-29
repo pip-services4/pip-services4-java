@@ -15,10 +15,11 @@ public class ContextResolver {
      * @see IContext
      */
     public static String getTraceId(IContext context) {
-        return (
-                context.get("trace_id") != null ? valToString(context.get("trace_id")) :
-                        context.get("traceId") != null ? valToString(context.get("traceId")) : null
-        );
+        if (context == null)
+            return null;
+        return context.get("trace_id") != null ? valToString(context.get("trace_id")) :
+                context.get("traceId") != null ? valToString(context.get("traceId")) : null;
+
     }
 
     /**
@@ -29,6 +30,8 @@ public class ContextResolver {
      * @see [[IContext]]
      */
     public static String getClient(IContext context) {
+        if (context == null)
+            return null;
         return context.get("client") != null ? valToString(context.get("client")) : null;
     }
 
@@ -40,6 +43,8 @@ public class ContextResolver {
      * @see [[IContext]]
      */
     public static String getUser(IContext context) {
+        if (context == null)
+            return null;
         return context.get("user") != null ? valToString(context.get("user")) : null;
     }
 
