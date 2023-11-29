@@ -229,7 +229,7 @@
         <dependency>
             <groupId>org.pipservices</groupId>
             <artifactId>pip-services4-components</artifactId>
-            <version>0.0.2</version>
+            <version>[${minimal.pipversion},1.0.0-!)</version>
         </dependency>
         <dependency>
             <groupId>org.pipservices</groupId>
