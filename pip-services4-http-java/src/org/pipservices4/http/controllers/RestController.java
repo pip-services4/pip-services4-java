@@ -131,7 +131,7 @@ public abstract class RestController
     private static final ConfigParams _defaultConfig = ConfigParams.fromTuples(
             "base_route", "",
             "dependencies.endpoint", "*:endpoint:http:*:1.0",
-            "dependencies.swagger", "*:swagger-service:*:*:1.0");
+            "dependencies.swagger", "*:swagger-controller:*:*:1.0");
 
     protected ConfigParams _config;
     private IReferences _references;
