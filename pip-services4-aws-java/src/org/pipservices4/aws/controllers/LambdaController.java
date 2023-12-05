@@ -24,7 +24,7 @@ import java.util.function.Function;
 
 /**
  * Abstract controller that receives remove calls via AWS Lambda protocol.
- *
+ * <p>
  * This controller is intended to work inside LambdaFunction container that
  * exploses registered actions externally.
  * <p>
@@ -47,7 +47,7 @@ import java.util.function.Function;
  * </ul>
  * <p>
  * ### Example ###
- * 
+ *
  * <pre>
  * {@code
  * class MyLambdaController extends LambdaController {
@@ -152,6 +152,7 @@ public abstract class LambdaController
 
     /**
      * Get all actions supported by the controller.
+     *
      * @return an array with supported actions.
      */
     public List<LambdaAction> getActions() {
@@ -218,7 +219,7 @@ public abstract class LambdaController
         _interceptors = new ArrayList<>();
     }
 
-    protected Function<Map<String, Object>, ?> applyValidation(Schema schema, Function<Map<String, Object>, ?>  action) {
+    protected Function<Map<String, Object>, ?> applyValidation(Schema schema, Function<Map<String, Object>, ?> action) {
         // Create an action function
         Function<Map<String, Object>, ?> actionWrapper = (params) -> {
             // Validate object
@@ -237,12 +238,17 @@ public abstract class LambdaController
         return actionWrapper;
     }
 
-    protected Function<Map<String, Object>, ?> applyInterceptors(Function<Map<String, Object>, ?>  action) {
+    protected Function<Map<String, Object>, ?> applyInterceptors(Function<Map<String, Object>, ?> action) {
         var actionWrapper = action;
 
         for (var index = _interceptors.size() - 1; index >= 0; index--) {
             var interceptor = _interceptors.get(index);
-            actionWrapper = (act) -> (params) -> interceptor.apply(params, act);
+
+            Function<Function<Map<String, Object>, ?>, Function<Map<String, Object>, ?>> func = (act) ->
+                    (Map<String, Object> params) ->
+                            interceptor.apply(params, act);
+
+            actionWrapper = func.apply(actionWrapper);
         }
 
         return actionWrapper;
@@ -250,7 +256,7 @@ public abstract class LambdaController
 
 
     protected String generateActionCmd(String name) {
-        String  cmd = name;
+        String cmd = name;
         if (this._name != null) {
             cmd = this._name + "." + cmd;
         }
@@ -260,9 +266,9 @@ public abstract class LambdaController
     /**
      * Registers a action in AWS Lambda function.
      *
-     * @param name          an action name
-     * @param schema        a validation schema to validate received parameters.
-     * @param action        an action function that is called when operation is invoked.
+     * @param name   an action name
+     * @param schema a validation schema to validate received parameters.
+     * @param action an action function that is called when operation is invoked.
      */
     protected void registerAction(String name, Schema schema, Function<Map<String, Object>, ?> action) {
         var actionWrapper = this.applyValidation(schema, action);
@@ -276,13 +282,13 @@ public abstract class LambdaController
     /**
      * Registers an action with authorization.
      *
-     * @param name          an action name
-     * @param schema        a validation schema to validate received parameters.
-     * @param authorize     an authorization interceptor
-     * @param action        an action function that is called when operation is invoked.
+     * @param name      an action name
+     * @param schema    a validation schema to validate received parameters.
+     * @param authorize an authorization interceptor
+     * @param action    an action function that is called when operation is invoked.
      */
     protected void registerActionWithAuth(String name, Schema schema,
-                                         AuthorizeFunction<Map<String, Object>, Function<Map<String, Object>, ?>, ?> authorize,
+                                          AuthorizeFunction<Map<String, Object>, Function<Map<String, Object>, ?>, ?> authorize,
                                           Function<Map<String, Object>, ?> action) {
         var actionWrapper = this.applyValidation(schema, action);
         // Add authorization just before validation
@@ -301,7 +307,7 @@ public abstract class LambdaController
     /**
      * Registers a middleware for actions in AWS Lambda controller.
      *
-     * @param action        an action function that is called when middleware is invoked.
+     * @param action an action function that is called when middleware is invoked.
      */
     protected void registerInterceptor(AuthorizeFunction<Map<String, Object>, Function<Map<String, Object>, ?>, ?> action) {
         _interceptors.add(action);
@@ -316,7 +322,7 @@ public abstract class LambdaController
      * Calls registered action in this lambda function.
      * "cmd" parameter in the action parameters determin
      * what action shall be called.
-     *
+     * <p>
      * This method shall only be used in testing.
      *
      * @param params action parameters.
