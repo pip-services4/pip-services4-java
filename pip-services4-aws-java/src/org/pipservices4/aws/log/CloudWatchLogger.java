@@ -235,7 +235,7 @@ public class CloudWatchLogger extends CachedLogger implements IReferenceable, IO
      * @param context 	(optional) execution context to trace execution through call chain.
      */
     @Override
-    public void close(IContext context) throws InvocationException, ConfigException {
+    public void close(IContext context) throws InvocationException {
         this.save(this._cache);
 
         if (this._timer != null)

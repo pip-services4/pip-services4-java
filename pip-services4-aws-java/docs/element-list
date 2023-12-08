@@ -1,0 +1,8 @@
+org.pipservices4.aws.build
+org.pipservices4.aws.clients
+org.pipservices4.aws.connect
+org.pipservices4.aws.containers
+org.pipservices4.aws.controllers
+org.pipservices4.aws.count
+org.pipservices4.aws.log
+org.pipservices4.aws.test

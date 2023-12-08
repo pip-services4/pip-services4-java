@@ -18,7 +18,7 @@ public class TestLambdaClient extends LambdaClient {
     /**
      * Calls a AWS Lambda Function action.
      *
-     * @param type          the generic class type of data.
+     * @param type          the class type of data.
      * @param cmd               an action name to be called.
      * @param context     (optional) a context to trace execution through call chain.
      * @param params            (optional) action parameters.
@@ -34,7 +34,7 @@ public class TestLambdaClient extends LambdaClient {
     /**
      * Calls a AWS Lambda Function action asynchronously without waiting for response.
      *
-     * @param type          the generic class type of data.
+     * @param type          the class type of data.
      * @param cmd               an action name to be called.
      * @param context     (optional) a context to trace execution through call chain.
      * @param params            (optional) action parameters.

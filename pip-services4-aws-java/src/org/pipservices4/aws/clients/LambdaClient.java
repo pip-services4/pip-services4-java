@@ -1,6 +1,8 @@
 package org.pipservices4.aws.clients;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.core.type.TypeReference;
+import jakarta.ws.rs.core.GenericType;
 import org.pipservices4.aws.connect.AwsConnectionParams;
 import org.pipservices4.aws.connect.AwsConnectionResolver;
 import org.pipservices4.commons.convert.JsonConverter;
@@ -237,6 +239,7 @@ public abstract class LambdaClient implements IOpenable, IConfigurable, IReferen
     /**
      * Performs AWS Lambda Function invocation.
      *
+     * @param type          the class type of data.
      * @param invocationType    an invocation type: "RequestResponse" or "Event"
      * @param cmd               an action name to be called.
      * @param context 	(optional) execution context to trace execution through call chain.
@@ -244,6 +247,67 @@ public abstract class LambdaClient implements IOpenable, IConfigurable, IReferen
      * @return            action result.
      */
     protected <T> T invoke(Class<T> type, String invocationType, String cmd, IContext context, Map<String, Object> args) throws ApplicationException {
+        if (cmd == null) {
+            try {
+                throw new UnknownException(null, "NO_COMMAND", "Missing Seneca pattern cmd");
+            } catch (UnknownException e) {
+                throw new RuntimeException(e);
+            }
+        }
+
+        args.put("cmd", cmd);
+        args.put("trace_id", ContextResolver.getTraceId(context) != null
+                ? ContextResolver.getTraceId(context) : IdGenerator.nextShort());
+
+        InvokeRequest request = null;
+        try {
+            request = InvokeRequest.builder()
+                    .functionName(this._connection.getArn())
+                    .invocationType(invocationType)
+                    .logType(LogType.NONE)
+                    .payload(SdkBytes.fromUtf8String(JsonConverter.toJson(args)))
+                    .build();
+        } catch (JsonProcessingException e) {
+            throw new RuntimeException(e);
+        }
+
+        try {
+            var data = _client.invoke(request);
+
+            var payload = data.payload().asUtf8String();
+
+            if (payload != null) {
+                try {
+                    return JsonConverter.fromJson(type, payload);
+                } catch (Exception ex) {
+                    throw new InvocationException(
+                            ContextResolver.getTraceId(context),
+                            "DESERIALIZATION_FAILED",
+                            "Failed to deserialize result"
+                    ).withCause(ex);
+                }
+            }
+            return null;
+        } catch (Exception ex) {
+            throw new InvocationException(
+                    ContextResolver.getTraceId(context),
+                    "CALL_FAILED",
+                    "Failed to invoke lambda function"
+            ).withCause(ex);
+        }
+    }
+
+    /**
+     * Performs AWS Lambda Function invocation.
+     *
+     * @param type          the class type of data.
+     * @param invocationType    an invocation type: "RequestResponse" or "Event"
+     * @param cmd               an action name to be called.
+     * @param context 	(optional) execution context to trace execution through call chain.
+     * @param args              action arguments
+     * @return            action result.
+     */
+    protected <T> T invoke(TypeReference<T> type, String invocationType, String cmd, IContext context, Map<String, Object> args) throws ApplicationException {
         if (cmd == null) {
             try {
                 throw new UnknownException(null, "NO_COMMAND", "Missing Seneca pattern cmd");
@@ -308,6 +372,34 @@ public abstract class LambdaClient implements IOpenable, IConfigurable, IReferen
         return invoke(type, "RequestResponse", cmd, context, params);
     }
 
+    /**
+     * Calls a AWS Lambda Function action.
+     *
+     * @param type          the generic class type of data.
+     * @param cmd               an action name to be called.
+     * @param context     (optional) a context to trace execution through call chain.
+     * @param params            (optional) action parameters.
+     * @return           action result.
+     * @throws ApplicationException when error occurred.
+     */
+    protected <T> T call(TypeReference<T> type, String cmd, IContext context, Map<String, Object> params) throws ApplicationException {
+        return invoke(type, "RequestResponse", cmd, context, params);
+    }
+
+
+    /**
+     * Calls a AWS Lambda Function action asynchronously without waiting for response.
+     *
+     * @param type          the class type of data.
+     * @param cmd               an action name to be called.
+     * @param context     (optional) a context to trace execution through call chain.
+     * @param params            (optional) action parameters.
+     * @return            action result.
+     * @throws ApplicationException when error occurred.
+     */
+    protected <T> T callOneWay(Class<T> type, String cmd,  IContext context, Map<String, Object> params) throws ApplicationException {
+        return invoke(type,"Event", cmd, context, params);
+    }
 
     /**
      * Calls a AWS Lambda Function action asynchronously without waiting for response.
@@ -319,7 +411,7 @@ public abstract class LambdaClient implements IOpenable, IConfigurable, IReferen
      * @return            action result.
      * @throws ApplicationException when error occurred.
      */
-    protected <T> T callOneWay(Class<T> type, String cmd,  IContext context, Map<String, Object> params) throws ApplicationException {
+    protected <T> T callOneWay(TypeReference<T> type, String cmd,  IContext context, Map<String, Object> params) throws ApplicationException {
         return invoke(type,"Event", cmd, context, params);
     }
 }

@@ -17,7 +17,7 @@ public class TestCommandableLambdaClient extends CommandableLambdaClient {
      * The name of the action is added as "cmd" parameter
      * to the action parameters.
      *
-     * @param type          the generic class type of data.
+     * @param type          the class type of data.
      * @param cmd               an action name
      * @param context     (optional) a context to trace execution through call chain.
      * @param params            command parameters.

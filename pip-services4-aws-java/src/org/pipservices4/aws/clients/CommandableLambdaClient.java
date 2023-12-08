@@ -1,5 +1,6 @@
 package org.pipservices4.aws.clients;
 
+import com.fasterxml.jackson.core.type.TypeReference;
 import org.pipservices4.commons.errors.ApplicationException;
 import org.pipservices4.components.context.IContext;
 
@@ -85,7 +86,7 @@ public class CommandableLambdaClient extends LambdaClient {
 	 * The name of the action is added as "cmd" parameter
 	 * to the action parameters.
 	 *
-	 * @param type          the generic class type of data.
+	 * @param type          the class type of data.
 	 * @param cmd               an action name
 	 * @param context     (optional) a context to trace execution through call chain.
 	 * @param params            command parameters.
@@ -97,6 +98,31 @@ public class CommandableLambdaClient extends LambdaClient {
         var timing = this.instrument(context, command);
 		try {
             var result = call(type, command, context, params);
+			timing.endTiming();
+			return result;
+		} catch (Exception ex) {
+			timing.endFailure(ex);
+			throw ex;
+		}
+	}
+
+	/**
+	 * Calls a remote action in AWS Lambda function.
+	 * The name of the action is added as "cmd" parameter
+	 * to the action parameters.
+	 *
+	 * @param type          the generic class type of data.
+	 * @param cmd               an action name
+	 * @param context     (optional) a context to trace execution through call chain.
+	 * @param params            command parameters.
+	 * @return           action result.
+	 */
+	public <T> T callCommand(TypeReference<T> type, String cmd, IContext context, Map<String, Object> params)
+			throws ApplicationException {
+		var command = this._name + '.' + cmd;
+		var timing = this.instrument(context, command);
+		try {
+			var result = call(type, command, context, params);
 			timing.endTiming();
 			return result;
 		} catch (Exception ex) {

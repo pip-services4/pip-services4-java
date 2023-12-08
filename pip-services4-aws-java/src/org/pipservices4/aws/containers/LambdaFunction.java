@@ -254,13 +254,21 @@ public abstract class LambdaFunction extends Container {
      * @param action        an action function that is called when action is invoked.
      */
     protected void registerAction(String cmd, Schema schema,
-                             Function<Map<String, Object>, ?> action) throws UnknownException {
+                             Function<Map<String, Object>, ?> action) {
         if (cmd.isEmpty()) {
-            throw new UnknownException(null, "NO_COMMAND", "Missing command");
+            try {
+                throw new UnknownException(null, "NO_COMMAND", "Missing command");
+            } catch (UnknownException e) {
+                throw new RuntimeException(e);
+            }
         }
 
         if (action == null) {
-            throw new UnknownException(null, "NO_ACTION", "Missing action");
+            try {
+                throw new UnknownException(null, "NO_ACTION", "Missing action");
+            } catch (UnknownException e) {
+                throw new RuntimeException(e);
+            }
         }
 
         // Hack!!! Wrapping action to preserve prototyping context
