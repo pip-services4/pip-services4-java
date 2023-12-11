@@ -67,19 +67,19 @@ public class DummyCommandableLambdaControllerTest {
 
         // Update the dummy
         dummy1.setContent("Updated Content 1");
-        dummy = (Dummy) lambda.act(Map.of("cmd", "dummies.update_dummy", "dummy", _dummy1));
+        dummy = (Dummy) lambda.act(Map.of("cmd", "dummies.update_dummy", "dummy", dummy1));
 
         assertNotNull(dummy);
         assertEquals(dummy.getContent(), "Updated Content 1");
-        assertEquals(dummy.getKey(), _dummy1.getKey());
+        assertEquals(dummy.getKey(), dummy1.getKey());
 
         dummy1 = dummy;
 
         // Delete dummy
-        lambda.act(Map.of("cmd", "delete_dummy", "dummies.dummy_id", _dummy1.getId()));
+        lambda.act(Map.of("cmd", "dummies.delete_dummy", "dummy_id", dummy1.getId()));
 
         // Try to get delete dummy
-        dummy = (Dummy) lambda.act(Map.of("cmd", "dummies.get_dummy_by_id", "dummy_id", _dummy1.getId()));
+        dummy = (Dummy) lambda.act(Map.of("cmd", "dummies.get_dummy_by_id", "dummy_id", dummy1.getId()));
 
         assertNull(dummy);
     }

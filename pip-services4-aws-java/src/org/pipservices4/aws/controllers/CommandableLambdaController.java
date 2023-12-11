@@ -87,7 +87,7 @@ public class CommandableLambdaController extends LambdaController {
 
         for (ICommand command : commands) {
             registerAction(command.getName(), null, (params) -> {
-                var context = params != null ? Context.fromTraceId(params.get("trace_id").toString()) : null;
+                var context = params != null ? Context.fromTraceId((String) params.get("trace_id")) : null;
                 var args = Parameters.fromValue(params);
                 args.remove("trace_id");
                 InstrumentTiming timing = this.instrument(context, command.getName());

@@ -275,7 +275,7 @@ public abstract class LambdaFunction extends Container {
         Function<Map<String, Object>, ?> actionCurl = (Map<String, Object> params) -> {
             // Perform validation
             if (schema != null) {
-                String traceId = params.get("trace_id").toString();
+                String traceId = (String) params.get("trace_id");
                 try {
                     schema.validateAndThrowException(traceId, params, false);
                 } catch (ValidationException ex) {
@@ -300,7 +300,7 @@ public abstract class LambdaFunction extends Container {
      */
     protected Object execute(Map<String, Object> params) throws ApplicationException {
         String cmd = params.get("cmd").toString();
-        String traceId = params.get("trace_id").toString();
+        String traceId = (String) params.get("trace_id");
 
         if (cmd == null) {
             throw new BadRequestException(

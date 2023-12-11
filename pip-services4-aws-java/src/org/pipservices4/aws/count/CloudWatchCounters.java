@@ -92,8 +92,8 @@ import java.util.List;
  * counters.dump();
  */
 public class CloudWatchCounters extends CachedCounters implements IReferenceable, IOpenable, IConfigurable {
-    private final CompositeLogger _logger = new CompositeLogger();
-    private final AwsConnectionResolver _connectionResolver = new AwsConnectionResolver();
+    private CompositeLogger _logger = new CompositeLogger();
+    private AwsConnectionResolver _connectionResolver = new AwsConnectionResolver();
     private AwsConnectionParams _connection;
     private boolean _opened = false;
     private String _source;

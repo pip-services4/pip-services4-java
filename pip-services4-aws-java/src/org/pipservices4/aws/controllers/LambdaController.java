@@ -225,7 +225,7 @@ public abstract class LambdaController
             // Validate object
             if (schema != null && params != null) {
                 // Perform validation
-                var traceId = params.get("trace_id").toString();
+                var traceId = (String) params.get("trace_id");
                 try {
                     schema.validateAndThrowException(traceId, params, false);
                 } catch (ValidationException ex) {
@@ -329,7 +329,7 @@ public abstract class LambdaController
      */
     public Object act(Map<String, Object> params) throws ApplicationException {
         String cmd = params.get("cmd").toString();
-        String context = params.get("trace_id").toString();
+        String context = (String) params.get("trace_id");
 
         if (cmd == null) {
             throw new BadRequestException(

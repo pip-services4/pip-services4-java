@@ -72,7 +72,7 @@ public class CommandableLambdaFunction extends LambdaFunction {
             var command = commands.get(index);
 
             this.registerAction(command.getName(), null, (params) -> {
-                var context = params != null ? Context.fromTraceId(params.get("trace_id").toString()) : null;
+                var context = params != null ? Context.fromTraceId((String) params.get("trace_id")) : null;
                 var args = Parameters.fromValue(params);
                 InstrumentTiming timing = this.instrument(context, this._info.getName() + '.' + command.getName());
 

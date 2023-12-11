@@ -89,7 +89,7 @@ import java.util.*;
  */
 public class CloudWatchLogger extends CachedLogger implements IReferenceable, IOpenable {
 
-    private final AwsConnectionResolver _connectionResolver = new AwsConnectionResolver();
+    private AwsConnectionResolver _connectionResolver = new AwsConnectionResolver();
     private CloudWatchLogsClient _client = null;
     private Timer _timer;
     private AwsConnectionParams _connection;

@@ -14,7 +14,7 @@ public class DummyCommandableLambdaClientTest {
     private DummyClientFixture _fixture;
 
     @Before
-    public void setUp() throws Exception {
+    public void setUpClass() throws Exception {
         var lambdaArn = System.getenv("LAMBDA_ARN");
         var awsAccessId = System.getenv("AWS_ACCESS_ID");
         var awsAccessKey = System.getenv("AWS_ACCESS_KEY");

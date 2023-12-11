@@ -18,9 +18,13 @@ public class CloudWatchLoggerTest {
 
     @Before
     public void setupClass() throws ApplicationException {
-        var region = System.getenv("AWS_REGION") != null ? System.getenv("AWS_REGION") : "";
-        var awsAccessId = System.getenv("AWS_ACCESS_ID") != null ? System.getenv("AWS_ACCESS_ID") : "";
-        var awsAccessKey = System.getenv("AWS_ACCESS_KEY") != null ? System.getenv("AWS_ACCESS_KEY") : "";
+        var region = System.getenv("AWS_REGION");
+        var awsAccessId = System.getenv("AWS_ACCESS_ID");
+        var awsAccessKey = System.getenv("AWS_ACCESS_KEY");
+
+        if (awsAccessId == null || awsAccessKey == null || region == null) {
+            return;
+        }
 
         _logger = new CloudWatchLogger();
         _fixture = new LoggerFixture(_logger);

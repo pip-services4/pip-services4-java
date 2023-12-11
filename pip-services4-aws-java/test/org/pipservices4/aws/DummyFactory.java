@@ -1,5 +1,7 @@
 package org.pipservices4.aws;
 
+import org.pipservices4.aws.controllers.DummyCommandableLambdaController;
+import org.pipservices4.aws.controllers.DummyLambdaController;
 import org.pipservices4.components.build.Factory;
 import org.pipservices4.components.refer.Descriptor;
 

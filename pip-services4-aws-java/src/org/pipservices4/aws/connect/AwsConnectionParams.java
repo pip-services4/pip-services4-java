@@ -190,7 +190,7 @@ public class AwsConnectionParams extends ConfigParams {
         arn = "arn";
         final String partition = this.getPartition();
         arn += ":" + partition;
-        final String service = this.getService();
+        final String service = this.getService() != null ? this.getService() : "";
         arn += ":" + service;
         final String region = this.getRegion() != null ? this.getRegion() : "";
         arn += ":" + region;

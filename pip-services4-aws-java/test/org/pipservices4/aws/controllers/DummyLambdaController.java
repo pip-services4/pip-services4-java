@@ -51,7 +51,7 @@ public class DummyLambdaController extends LambdaController {
                     Context.fromTraceId(params.get("trace_id") != null ? params.get("trace_id").toString() : null),
                     JsonConverter.fromJson(
                             Dummy.class,
-                            params.get("dummy").toString()
+                            JsonConverter.toJson(params.get("dummy"))
                     )
             );
         } catch (IOException e) {
@@ -65,7 +65,7 @@ public class DummyLambdaController extends LambdaController {
                     Context.fromTraceId(params.get("trace_id") != null ? params.get("trace_id").toString() : null),
                     JsonConverter.fromJson(
                             Dummy.class,
-                            params.get("dummy").toString()
+                            JsonConverter.toJson(params.get("dummy"))
                     )
             );
         } catch (IOException e) {
