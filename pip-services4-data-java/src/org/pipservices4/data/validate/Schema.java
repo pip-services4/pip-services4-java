@@ -231,4 +231,32 @@ public class Schema {
 	public void validateAndThrowException(String traceId, Object value) throws ValidationException {
 		validateAndThrowException(traceId, value, false);
 	}
+
+	/**
+	 * Validates the given value and returns a ValidationException if errors were found.
+	 *
+	 *
+	 * @param traceId     (optional) transaction id to trace execution through call chain.
+	 * @param value         a value to be validated.
+	 * @param strict        true to treat warnings as errors.
+	 * @return ValidationException when errors occurred in validation
+	 */
+	public ValidationException validateAndReturnException(String traceId, Object value, boolean strict) {
+		var results = this.validate(value);
+		return ValidationException.fromResults(traceId, results, strict);
+	}
+
+	/**
+	 * Validates the given value and throws a [[ValidationException]] if errors were found.
+	 *
+	 * @param traceId     (optional) transaction id to trace execution through call chain.
+	 * @param value         a value to be validated.
+	 * @return ValidationException when errors occured in validation
+	 *
+	 * @see ValidationException#throwExceptionIfNeeded(String, List, boolean)
+	 */
+	public ValidationException validateAndReturnException(String traceId, Object value) throws ValidationException {
+		var results = this.validate(value);
+		return ValidationException.fromResults(traceId, results, false);
+	}
 }

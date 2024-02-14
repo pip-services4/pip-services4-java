@@ -77,11 +77,9 @@ public class ValidationException extends BadRequestException {
      * @param results       list of validation results that may contain errors
      * @param strict        true to treat warnings as errors.
      * @return a newly created ValidationException or null if no errors in found.
-     * @throws ValidationException when errors occured in validation.
      * @see ValidationResult
      */
-    public static ValidationException fromResults(String traceId, List<ValidationResult> results, boolean strict)
-            throws ValidationException {
+    public static ValidationException fromResults(String traceId, List<ValidationResult> results, boolean strict) {
         boolean hasErrors = false;
         for (ValidationResult result : results) {
             if (result.getType() == ValidationResultType.Error)
