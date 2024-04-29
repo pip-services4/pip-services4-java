@@ -25,7 +25,7 @@ public class TestCommandableGrpcClient  extends CommandableGrpcClient {
      * @return the received result.
      */
     @Override
-    protected <T> T callCommand(Class<T> returnType, String name, IContext context, Object params) {
+    public <T> T callCommand(Class<T> returnType, String name, IContext context, Object params) {
         return super.callCommand(returnType, name, context, params);
     }
 }
