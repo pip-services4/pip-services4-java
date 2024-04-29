@@ -6,4 +6,7 @@ Moved code from PipServices 3
 ## <a name="0.0.2"></a>Pip.Services 4 0.0.2 (2024-04-29)
 Update TestCommandableGrpcClient
 
+## <a name="0.0.3"></a>Pip.Services 4 0.0.3 (2024-04-29)
+Fixed issue with registrations and dependencyResolver
+
 

@@ -190,14 +190,14 @@ public abstract class CommandableGrpcController extends GrpcController {
      */
     @Override
     public void register() {
-        ICommandable controller = null;
+        ICommandable service = null;
         try {
-            controller = this._dependencyResolver.getOneRequired(ICommandable.class, "controller");
+            service = this._dependencyResolver.getOneRequired(ICommandable.class, "service");
         } catch (ReferenceException e) {
             throw new RuntimeException(e);
         }
 
-        CommandSet _commandSet = controller.getCommandSet();
+        CommandSet _commandSet = service.getCommandSet();
 
         var commands = _commandSet.getCommands();
 
