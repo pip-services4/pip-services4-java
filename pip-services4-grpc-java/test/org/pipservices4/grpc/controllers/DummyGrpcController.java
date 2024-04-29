@@ -12,6 +12,7 @@ import org.pipservices4.components.refer.Descriptor;
 
 import org.pipservices4.components.refer.IReferences;
 import org.pipservices4.components.refer.ReferenceException;
+import org.pipservices4.data.query.PagingParams;
 import org.pipservices4.grpc.dummies.*;
 import org.pipservices4.grpc.sample.Dummy;
 import org.pipservices4.grpc.sample.IDummyService;

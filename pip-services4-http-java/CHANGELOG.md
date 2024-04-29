@@ -1,5 +1,8 @@
 # <img src="https://uploads-ssl.webflow.com/5ea5d3315186cf5ec60c3ee4/5edf1c94ce4c859f2b188094_logo.svg" alt="Pip.Services Logo" width="200"> <br/> HTTP/REST Communication Components for Java Changelog
 
+## <a name="0.0.4"></a>Pip.Services 4 0.0.4 (2024-04-29)
+Fixed TestRestController
+
 ## <a name="0.0.3"></a>Pip.Services 4 0.0.3 (2023-11-29)
 Fixed defaultConfig inside RestController
 

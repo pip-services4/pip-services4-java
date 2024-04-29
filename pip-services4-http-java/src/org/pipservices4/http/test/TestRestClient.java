@@ -24,7 +24,7 @@ public class TestRestClient extends RestClient {
      * @return result object.
      * @throws ApplicationException when error occured.
      */
-    protected <T> T call(Class<T> type, IContext context, String method, String route, Object requestEntity)
+    public <T> T call(Class<T> type, IContext context, String method, String route, Object requestEntity)
             throws ApplicationException {
 
         return super.call(type, context, method, route, requestEntity);
@@ -41,7 +41,7 @@ public class TestRestClient extends RestClient {
      * @return result object.
      * @throws ApplicationException when error occured.
      */
-    protected <T> T call(GenericType<T> type, IContext context, String method, String route,
+    public <T> T call(GenericType<T> type, IContext context, String method, String route,
                          Object requestEntity) throws ApplicationException {
 
         return super.call(type, context, method, route, requestEntity);
