@@ -115,9 +115,14 @@ public class Factory implements IFactory {
 	@Override
 	public Object canCreate(Object locator) {
 		for (Registration registration : _registrations) {
-			Object thisLocator = registration.getLocator();
-			if (thisLocator.equals(locator))
-				return thisLocator;
+			var thisLocator = registration.getLocator();
+			if (thisLocator instanceof Descriptor descriptor) {
+				if (descriptor.equals(locator))
+					return descriptor;
+			} else {
+				if (thisLocator.equals(locator))
+					return thisLocator;
+			}
 		}
 		return null;
 	}
