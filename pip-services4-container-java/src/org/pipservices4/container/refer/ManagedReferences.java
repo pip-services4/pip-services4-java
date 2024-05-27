@@ -75,8 +75,8 @@ public class ManagedReferences extends ReferencesDecorator implements IOpenable,
 	 * @throws ApplicationException when error occured.
 	 */
 	public void close(IContext context) throws ApplicationException {
-		_linker.close(context);
 		_runner.close(context);
+		_linker.close(context);
 	}
 
 	/**
