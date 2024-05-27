@@ -138,15 +138,17 @@ public class Factory implements IFactory {
 	@Override
 	public Object create(Object locator) throws CreateException {
 		for (Registration registration : _registrations) {
-			if (registration.getLocator().equals(locator)) {
-				try {
-					return registration.getFactory().create(locator);
-				} catch (Exception ex) {
-					if (ex instanceof CreateException)
-						throw (CreateException) ex;
+			if (registration.getLocator() instanceof Descriptor descriptor) {
+				if (descriptor.equals(locator)) {
+					try {
+						return registration.getFactory().create(locator);
+					} catch (Exception ex) {
+						if (ex instanceof CreateException)
+							throw (CreateException) ex;
 
-					throw (CreateException) new CreateException(null, "Failed to create object for " + locator)
-							.withCause(ex);
+						throw (CreateException) new CreateException(null, "Failed to create object for " + locator)
+								.withCause(ex);
+					}
 				}
 			}
 		}
